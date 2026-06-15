@@ -1,14 +1,4 @@
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { useState, useMemo } from "react";
-import L from "leaflet";
-
-/* FIX MARKER ICON */
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl:"https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-  iconUrl:"https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-  shadowUrl:"https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png"
-});
 
 /* LOCATIONS DATA */
 const allLocations = [
@@ -29,13 +19,6 @@ const allLocations = [
 
 const cities = [...new Set(allLocations.map(l => l.city))];
 
-/* MAP VIEW CHANGER */
-function ChangeMapView({ coords }) {
-  const map = useMap();
-  map.setView(coords, 13, { animate:true });
-  return null;
-}
-
 /* MAIN COMPONENT */
 export default function Locations() {
 
@@ -53,7 +36,11 @@ export default function Locations() {
     );
   },[city,type,category]);
 
-  const activeLocation = filtered[0] || allLocations[0];
+  const displayLocation = selected && filtered.includes(selected) ? selected : (filtered[0] || allLocations[0]);
+
+  const mapUrl = useMemo(() => {
+    return `https://maps.google.com/maps?q=${displayLocation.lat},${displayLocation.lng}&z=15&output=embed`;
+  }, [displayLocation]);
 
   return (
     <section className="px-6 py-14">
@@ -139,33 +126,14 @@ export default function Locations() {
 
         {/* MAP */}
         <div className="rounded-xl overflow-hidden shadow h-[450px]">
-
-          <MapContainer
-            center={[activeLocation.lat, activeLocation.lng]}
-            zoom={12}
-            className="h-full w-full">
-
-            <TileLayer
-              attribution="© OpenStreetMap"
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-
-            <ChangeMapView coords={[activeLocation.lat, activeLocation.lng]} />
-
-            {filtered.map((loc,i)=>(
-              <Marker
-                key={i}
-                position={[loc.lat, loc.lng]}
-                eventHandlers={{ click:()=>setSelected(loc) }}>
-                <Popup>
-                  <strong>{loc.name}</strong><br/>
-                  {loc.address}
-                </Popup>
-              </Marker>
-            ))}
-
-          </MapContainer>
-
+          <iframe
+            title={`Map for ${displayLocation.name}`}
+            src={mapUrl}
+            className="w-full h-full border-0"
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </div>
     </section>

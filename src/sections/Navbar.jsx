@@ -42,7 +42,7 @@ export default function Navbar() {
           </button>
 
           {/* Desktop Links */}
-          <div className="hidden md:flex gap-10 font-medium text-xl">
+          <div className="hidden md:flex gap-10 font-medium text-base">
             {links.map((item) => (
               <button
                 key={item.path}
@@ -79,7 +79,7 @@ export default function Navbar() {
             </button>
 
             {/* Mobile Links */}
-            <div className="flex flex-col gap-10 text-3xl font-medium text-center">
+            <div className="flex flex-col gap-10 text-2xl font-medium text-center">
               {links.map((item) => (
                 <button
                   key={item.path}

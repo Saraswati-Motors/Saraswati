@@ -4,7 +4,6 @@ import {
   IconMail,
   IconPhone
 } from "@tabler/icons-react";
-import { icon } from "leaflet";
 
 export default function FooterBar() {
 

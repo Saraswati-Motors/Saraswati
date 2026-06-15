@@ -44,9 +44,9 @@ export default function Timeline() {
         From strong beginnings to a future of growing possibilities.
       </p>
 
-      <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-10 xl:gap-12">
 
-        <button onClick={prev} className="hidden md:block text-red-600">
+        <button onClick={prev} className="hidden lg:block text-red-600">
           <ChevronLeft size={32} />
         </button>
 
@@ -58,7 +58,7 @@ export default function Timeline() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -40, opacity: 0 }}
             transition={{ duration: .4 }}
-            className="font-extrabold text-red-600 text-center text-[54px] sm:text-[72px] md:text-[150px] leading-none"
+            className="font-extrabold text-red-600 text-center text-[54px] sm:text-[72px] md:text-[100px] lg:text-[120px] xl:text-[150px] leading-none"
           >
             {current.year}
           </motion.h1>
@@ -71,7 +71,7 @@ export default function Timeline() {
             initial={{ rotate: -8, opacity: 0, scale: .9 }}
             animate={{ rotate: -6, opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
-            className="bg-white p-3 shadow-xl w-full max-w-[320px] sm:max-w-[380px] md:w-[420px] aspect-[4/3] flex-shrink-0"
+            className="bg-white border-[12px] border-white shadow-xl w-full max-w-[320px] sm:max-w-[360px] md:max-w-[380px] lg:w-[380px] xl:w-[420px] aspect-[4/3] flex-shrink-0 overflow-hidden"
           >
             <SmartImage
               src={current.image || "/fallback.jpg"}
@@ -87,18 +87,18 @@ export default function Timeline() {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0 }}
-            className="max-w-xs sm:max-w-sm text-gray-700 text-center md:text-left text-sm sm:text-base md:text-lg"
+            className="max-w-xs sm:max-w-md lg:max-w-[280px] xl:max-w-sm text-gray-700 text-center lg:text-left text-sm sm:text-base lg:text-lg"
           >
             {current.text}
           </motion.p>
         </AnimatePresence>
 
-        <button onClick={next} className="hidden md:block text-red-600">
+        <button onClick={next} className="hidden lg:block text-red-600">
           <ChevronRight size={32} />
         </button>
 
-        {/* Mobile arrows */}
-        <div className="flex md:hidden gap-6 pt-2">
+        {/* Mobile/Tablet arrows */}
+        <div className="flex lg:hidden gap-6 pt-2">
           <button onClick={prev} className="text-red-600">
             <ChevronLeft size={28} />
           </button>
@@ -113,7 +113,7 @@ export default function Timeline() {
 
         <div className="h-[2px] bg-gray-400 w-full absolute top-2" />
 
-        <div className="flex justify-between relative min-w-max md:min-w-0 px-2">
+        <div className="flex justify-between relative min-w-max lg:min-w-0 px-2">
           {data.map((item, i) => (
             <button key={i} onClick={() => setIndex(i)} className="flex flex-col items-center">
               <div className={`w-4 h-4 rounded-full border-2 transition ${i === index ? "bg-red-600 border-red-600" : "border-red-600 bg-white"}`} />

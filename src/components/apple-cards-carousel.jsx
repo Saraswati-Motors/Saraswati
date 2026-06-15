@@ -42,7 +42,7 @@ export const Carousel = ({
 
   const handleCardClose = (index) => {
     if (carouselRef.current) {
-      const cardWidth = isMobile() ? 230 : 384; // (md:w-96)
+      const cardWidth = isMobile() ? 230 : 480; // (md:w-[30rem])
       const gap = isMobile() ? 4 : 8;
       const scrollPosition = (cardWidth + gap) * (index + 1);
       carouselRef.current.scrollTo({
@@ -159,45 +159,53 @@ export const Card = ({
       className="relative z-50 w-[92vw] min-[840px]:w-[70vw] h-[85vh] min-[840px]:h-[80vh] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col"
     >
 
-      {/* top image */}
-      <div className="h-[40%] min-[840px]:h-2/4 w-full relative flex-shrink-0">
-        <img
-          src={card.src}
-          alt={card.title}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-      </div>
+              {/* top image wrapper with background blur */}
+              <div className="h-[40%] min-[840px]:h-[45%] w-full relative flex-shrink-0 bg-black/90 overflow-hidden flex items-center justify-center">
+                {/* Blurred background image to fill letterbox and avoid empty space */}
+                <img
+                  src={card.src}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover blur-md opacity-40 scale-105 pointer-events-none"
+                />
+                {/* Sharp centered image preserving its aspect ratio and preventing blur */}
+                <img
+                  src={card.src}
+                  alt={card.title}
+                  className="relative z-10 max-w-full max-h-full object-contain"
+                />
+              </div>
 
-      {/* scrollable content */}
-      <div className="flex-1 overflow-y-auto p-5 min-[840px]:p-10">
+              {/* scrollable content */}
+              <div className="flex-1 overflow-y-auto p-5 min-[840px]:p-8">
 
-        <button
-          onClick={handleClose}
-          className="absolute top-4 right-4 min-[840px]:top-6 min-[840px]:right-6 text-xl min-[840px]:text-2xl text-gray-400 hover:text-black"
-        >
-          ✕
-        </button>
+                <button
+                  onClick={handleClose}
+                  className="absolute top-4 right-4 min-[840px]:top-6 min-[840px]:right-6 text-xl min-[840px]:text-2xl text-gray-400 hover:text-black"
+                >
+                  ✕
+                </button>
 
-        {/* category */}
-        <p className="text-sm min-[840px]:text-xl text-gray-500 mb-1 min-[840px]:mb-2">
-          {card.category}
-        </p>
+                {/* category */}
+                <p className="text-xs min-[840px]:text-sm text-gray-500 mb-1 min-[840px]:mb-2">
+                  {card.category}
+                </p>
 
-        {/* clickable company name */}
-        <a
-          href={card.link}
-          target="_blank"
-          className="text-2xl min-[840px]:text-4xl font-bold text-black hover:underline block mb-3 min-[840px]:mb-6"
-        >
-          {card.title}
-        </a>
+                {/* clickable company name */}
+                <a
+                  href={card.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-2xl min-[840px]:text-3xl font-bold text-black hover:underline block mb-3 min-[840px]:mb-6"
+                >
+                  {card.title}
+                </a>
 
-        {/* description */}
-        <div className="text-gray-700 text-sm min-[840px]:text-xl leading-relaxed space-y-4 min-[840px]:space-y-6">
-          {card.content}
-        </div>
+                {/* description */}
+                <div className="text-gray-700 text-sm min-[840px]:text-base leading-relaxed space-y-4 min-[840px]:space-y-6">
+                  {card.content}
+                </div>
 
-      </div>
+              </div>
     </motion.div>
   </div>
 )}
@@ -205,18 +213,18 @@ export const Card = ({
       <motion.button
         layoutId={layout ? `card-${card.title}` : undefined}
         onClick={handleOpen}
-        className="relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 md:h-[38rem] md:w-[30rem] dark:bg-neutral-900">
+        className="relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 md:h-[30rem] md:w-[24rem] dark:bg-neutral-900">
         <div
           className="pointer-events-none absolute inset-x-0 top-0 z-30 h-full bg-gradient-to-b from-black/50 via-transparent to-transparent" />
         <div className="relative z-40 p-8">
           <motion.p
             layoutId={layout ? `category-${card.category}` : undefined}
-            className="text-left font-sans text-sm font-medium text-white md:text-base">
+            className="text-left font-sans text-xs font-medium text-white md:text-sm">
             {card.category}
           </motion.p>
           <motion.p
             layoutId={layout ? `title-${card.title}` : undefined}
-            className="mt-2 max-w-xs text-left font-sans text-xl font-semibold [text-wrap:balance] text-white md:text-3xl">
+            className="mt-2 max-w-xs text-left font-sans text-lg font-semibold [text-wrap:balance] text-white md:text-2xl">
             {card.title}
           </motion.p>
         </div>
