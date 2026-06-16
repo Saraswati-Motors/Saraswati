@@ -10,7 +10,8 @@ export default function Navbar() {
     { name: "Our Work", path: "work" },
     { name: "History", path: "history" },
     { name: "Team", path: "team" },
-    { name: "Locations", path: "locations" }
+    { name: "Locations", path: "locations" },
+    { name: "True Value", path: "/truevalue", isPage: true }
   ];
 
   // 🔥 Smooth scroll with navbar offset
@@ -26,6 +27,17 @@ export default function Navbar() {
       });
     }
     setOpen(false);
+  };
+
+  const handleLinkClick = (item) => {
+    if (item.isPage) {
+      window.history.pushState({}, "", item.path);
+      window.dispatchEvent(new Event("popstate"));
+      window.scrollTo(0, 0);
+      setOpen(false);
+    } else {
+      handleScroll(item.path);
+    }
   };
 
   return (
@@ -46,7 +58,7 @@ export default function Navbar() {
             {links.map((item) => (
               <button
                 key={item.path}
-                onClick={() => handleScroll(item.path)}
+                onClick={() => handleLinkClick(item)}
                 className="relative hover:text-white transition-all duration-300"
               >
                 {item.name}
@@ -83,7 +95,7 @@ export default function Navbar() {
               {links.map((item) => (
                 <button
                   key={item.path}
-                  onClick={() => handleScroll(item.path)}
+                  onClick={() => handleLinkClick(item)}
                   className="hover:text-white/70 transition"
                 >
                   {item.name}

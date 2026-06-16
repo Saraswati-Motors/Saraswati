@@ -32,22 +32,6 @@ export default function LogoMarquee() {
         </div>
 
       </div>
-
-      {/* animation styles */}
-      <style jsx>{`
-        .animate-marquee {
-          animation: marquee 100s linear infinite;
-        }
-
-        @keyframes marquee {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-      `}</style>
     </section>
   );
 }

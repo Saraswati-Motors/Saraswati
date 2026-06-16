@@ -1,0 +1,298 @@
+import { useState, useEffect, useRef } from "react";
+import { supabase } from "../lib/supabaseClient";
+import { mockCars } from "./mockData";
+import {
+  ShieldCheck,
+  Award,
+  Tag,
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  Gauge,
+  Settings
+} from "lucide-react";
+
+export default function TrueValueHome() {
+  const [featuredCars, setFeaturedCars] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const carouselRef = useRef(null);
+
+  useEffect(() => {
+    async function loadFeaturedCars() {
+      if (!supabase) {
+        setFeaturedCars(mockCars.filter(car => car.is_featured));
+        setLoading(false);
+        return;
+      }
+      try {
+        const { data, error } = await supabase
+          .from("vehicles")
+          .select("*")
+          .eq("is_featured", true);
+
+        if (error || !data || data.length === 0) {
+          setFeaturedCars(mockCars.filter(car => car.is_featured));
+        } else {
+          setFeaturedCars(data);
+        }
+      } catch (err) {
+        console.error("Error fetching from Supabase, using mock fallback:", err);
+        setFeaturedCars(mockCars.filter(car => car.is_featured));
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadFeaturedCars();
+  }, []);
+
+  const scrollStock = (direction) => {
+    if (carouselRef.current) {
+      const scrollAmount = 424; // Card width + gap
+      carouselRef.current.scrollBy({
+        left: direction * scrollAmount,
+        behavior: "smooth"
+      });
+    }
+  };
+
+  return (
+    <div className="bg-[#faf8ff] text-[#131b2e] min-h-screen">
+      {/* Hero Section */}
+      <section className="relative h-[85vh] flex items-center overflow-hidden bg-gray-100">
+        <div className="absolute inset-0 z-0">
+          <img
+            className="w-full h-full object-cover"
+            alt="Premium Maruti Suzuki Grand Vitara"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAgSd9Kuw9JqYHHpoEKx9H3Cp7ywBDvKZtCaZGLHSZyLM6065fzYDPMSKDSepW7P6b3PLhBWeVci6uXuU6yzHgz-KgWdN6-CtqYcBCqfhPyFrFooManFx0Xo3_CLdXFTvI1fHy2ucaDYRG7EKj2pE6tx8ON4X4gAeQQ4sCBU7ng5EC2FfOR8nZrBMWrq-pBhcLxFZwA-9zhqDl6PCLEyHV216P4HTfj5BVj8RkqaDpqwhg1tz15MliiLhZeebtKUvaAGUB5sFKF1K5"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#131b2e]/90 via-[#131b2e]/40 to-transparent"></div>
+        </div>
+
+        <div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto w-full">
+          <div className="max-w-2xl space-y-6">
+            <span className="inline-block bg-[#2b33a2] text-white px-4 py-1 text-xs font-bold uppercase tracking-widest rounded-full">
+              True Value Certified
+            </span>
+            <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight">
+              Find Your Perfect <br />
+              <span className="text-[#a1a8ff]">Pre-Owned Car.</span>
+            </h1>
+            <p className="text-lg text-gray-300 max-w-lg">
+              Experience the trust of Maruti Suzuki True Value with Saraswati Motors. Every car undergoes a 376-point quality check for a premium driving experience.
+            </p>
+            <div className="flex flex-wrap gap-4 pt-4">
+              <a
+                href="/truevalue/inventory"
+                className="bg-[#0e158d] text-white px-8 py-4 font-bold rounded-lg shadow-xl hover:bg-[#2b33a2] transition-all transform hover:-translate-y-0.5 text-center"
+              >
+                Explore Inventory
+              </a>
+              <a
+                href="/truevalue/about"
+                className="bg-transparent border-2 border-white text-white px-8 py-4 font-bold rounded-lg hover:bg-white/10 transition-all text-center"
+              >
+                Learn Our Legacy
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us - Bento Grid */}
+      <section className="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+        <div className="text-center mb-16 space-y-2">
+          <h2 className="text-3xl md:text-4xl font-bold">Why Choose Us</h2>
+          <div className="h-1.5 w-24 bg-[#0e158d] mx-auto rounded-full"></div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Card 1 */}
+          <div className="group p-8 bg-white border border-gray-100 rounded-2xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+            <div className="w-14 h-14 bg-[#e0e0ff] text-[#0e158d] flex items-center justify-center rounded-2xl mb-6 group-hover:scale-110 transition-transform">
+              <ShieldCheck size={32} />
+            </div>
+            <h3 className="text-xl font-bold mb-4 text-[#131b2e]">Unmatched Trust</h3>
+            <p className="text-gray-600">
+              Backed by Maruti Suzuki's legacy, we provide complete transparency in documentation and car history for absolute peace of mind.
+            </p>
+          </div>
+
+          {/* Card 2 */}
+          <div className="group p-8 bg-white border border-gray-100 rounded-2xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+            <div className="w-14 h-14 bg-[#e0e0ff] text-[#0e158d] flex items-center justify-center rounded-2xl mb-6 group-hover:scale-110 transition-transform">
+              <Award size={32} />
+            </div>
+            <h3 className="text-xl font-bold mb-4 text-[#131b2e]">Certified Quality</h3>
+            <p className="text-gray-600">
+              Each vehicle undergoes a rigorous 376-point digital evaluation covering engine, suspension, electricals, and body structure.
+            </p>
+          </div>
+
+          {/* Card 3 */}
+          <div className="group p-8 bg-white border border-gray-100 rounded-2xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+            <div className="w-14 h-14 bg-[#e0e0ff] text-[#0e158d] flex items-center justify-center rounded-2xl mb-6 group-hover:scale-110 transition-transform">
+              <Tag size={32} />
+            </div>
+            <h3 className="text-xl font-bold mb-4 text-[#131b2e]">Exceptional Value</h3>
+            <p className="text-gray-600">
+              Get the best prices on pre-owned cars and competitive exchange bonuses. High value, low depreciation, and easy financing options.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Browse by Category */}
+      <section className="py-24 bg-white">
+        <div className="px-6 md:px-12 max-w-7xl mx-auto">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 gap-4">
+            <div className="space-y-2">
+              <h2 className="text-3xl md:text-4xl font-bold">Browse by Category</h2>
+              <p className="text-gray-500">Find the vehicle that perfectly suits your lifestyle</p>
+            </div>
+            <a
+              href="/truevalue/inventory"
+              className="text-[#0e158d] font-bold flex items-center gap-2 hover:underline"
+            >
+              View All Catalogue <ArrowRight size={18} />
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* SUVs */}
+            <a href="/truevalue/inventory" className="relative group h-96 overflow-hidden rounded-2xl cursor-pointer block">
+              <img
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                alt="Maruti Suzuki SUV Category"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9T-MmiSHvZAss6vjuQilGLNlYp2E0zPsTYZ1iW89otbCoGBgGN57V-A8gYUKteq6G7sDUJb7qWmmGch7GgrMc2uj-i5XVPVZWm4Hz7fEgUdBunHUYmcQKZTTIZlqMbRfGvI2F7uIJePPZiq0jWx7TvcjzPXd4zH9HeCa2OvYjT4XsJ6QFXcvCM9moZlTg0NnG13dq54UvaeA1Fd9YMg9IPn6QZ6SwK_q4170bVJj2frc2sM_LEg9Q6mSF_MWy9JWkbRBq8se0YMBF"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              <div className="absolute bottom-0 left-0 p-8">
+                <h3 className="text-white text-2xl font-bold mb-2">SUVs</h3>
+                <p className="text-gray-300 text-sm mb-4">Built for adventure and command</p>
+                <span className="inline-flex items-center justify-center w-12 h-12 bg-white text-[#0e158d] rounded-full group-hover:w-32 transition-all duration-300 overflow-hidden">
+                  <ArrowRight className="group-hover:mr-2 transition-all" size={20} />
+                  <span className="hidden group-hover:inline font-bold text-sm">Explore</span>
+                </span>
+              </div>
+            </a>
+
+            {/* Sedans */}
+            <a href="/truevalue/inventory" className="relative group h-96 overflow-hidden rounded-2xl cursor-pointer block">
+              <img
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                alt="Maruti Suzuki Sedan Category"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnIvdD413svoQpi8Vr9qzwLZfPWfftD4ZVbPxTvBQUT0iT0ftV3G9ygUHDf1khzDs_JFtPqAJSi0lWqM_sUM7nUVWU1_pSgKbsm7qidBezVMjn-s0cX3gPsMIELTrTHKyPo_Tnqgg2bO7eAmzFDD4WQtvS5evFmL5BXf0WG_fQ-ZF7c0k9kfRvCJiL8TnyuGDXuRm-d9R7OrlYspC0p0RNyv0ZUyZx2zWp3ahFK_b9D3B2vgMgROfS6LavuUw3JfjbzPagZqPlMWCT"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              <div className="absolute bottom-0 left-0 p-8">
+                <h3 className="text-white text-2xl font-bold mb-2">Sedans</h3>
+                <p className="text-gray-300 text-sm mb-4">Sophistication and comfort combined</p>
+                <span className="inline-flex items-center justify-center w-12 h-12 bg-white text-[#0e158d] rounded-full group-hover:w-32 transition-all duration-300 overflow-hidden">
+                  <ArrowRight className="group-hover:mr-2 transition-all" size={20} />
+                  <span className="hidden group-hover:inline font-bold text-sm">Explore</span>
+                </span>
+              </div>
+            </a>
+
+            {/* Hatchbacks */}
+            <a href="/truevalue/inventory" className="relative group h-96 overflow-hidden rounded-2xl cursor-pointer block">
+              <img
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                alt="Maruti Suzuki Hatchback Category"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCM6LeJy8s6WUjr0Y-tQaqb_TYFPNIa1dPsXs8faR-uf38m-bgdfXUYPPNMKzjCUAnVO-sQI4YaV4uSA0EN0iXU0RgSjZTld5RpiNSNEF3GBoGGloABqgmtcjVpERRt57ZoZCR1_xJPaWrxi8AyJ7-AXxEKtIbE_SjmQ5RxPuP-_h_pjwdMGvmXqp9XjhREvz1q5MokOqhGmVcsnjQQQfhtsTWyiNvnYFIfmjbsSDG-OME-4zCldzKSEc8ha7yUgwzoFEIP9WinrtoO"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              <div className="absolute bottom-0 left-0 p-8">
+                <h3 className="text-white text-2xl font-bold mb-2">Hatchbacks</h3>
+                <p className="text-gray-300 text-sm mb-4">Efficiency meeting urban agility</p>
+                <span className="inline-flex items-center justify-center w-12 h-12 bg-white text-[#0e158d] rounded-full group-hover:w-32 transition-all duration-300 overflow-hidden">
+                  <ArrowRight className="group-hover:mr-2 transition-all" size={20} />
+                  <span className="hidden group-hover:inline font-bold text-sm">Explore</span>
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Stock Carousel */}
+      <section className="py-24 px-6 md:px-12 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex justify-between items-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold">Featured Inventory</h2>
+            <div className="flex gap-4">
+              <button
+                className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-[#0e158d] hover:text-white transition-colors"
+                onClick={() => scrollStock(-1)}
+              >
+                <ChevronLeft size={24} />
+              </button>
+              <button
+                className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-[#0e158d] hover:text-white transition-colors"
+                onClick={() => scrollStock(1)}
+              >
+                <ChevronRight size={24} />
+              </button>
+            </div>
+          </div>
+
+          <div
+            ref={carouselRef}
+            className="flex gap-8 overflow-x-auto hide-scrollbar snap-x snap-mandatory scroll-smooth pb-8"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {loading ? (
+              <div className="w-full text-center py-12 font-bold text-gray-500">
+                Loading Featured Vehicles...
+              </div>
+            ) : (
+              featuredCars.map((car) => (
+                <div key={car.id} className="min-w-[320px] md:min-w-[400px] snap-start group">
+                  <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300">
+                    <div className="relative h-64 overflow-hidden">
+                      <img
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        alt={`${car.make} ${car.model}`}
+                        src={car.image_url}
+                      />
+                      <span className="absolute top-4 left-4 bg-[#0e158d] text-white px-3 py-1 text-xs font-bold rounded">
+                        {car.badge || "CERTIFIED"}
+                      </span>
+                    </div>
+                    <div className="p-6 space-y-4">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <h4 className="text-xl font-bold text-[#131b2e]">{car.model}</h4>
+                          <p className="text-gray-500 text-sm">{car.year} • {car.fuel_type} • {car.mileage_km.toLocaleString()} km</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-[#0e158d] font-bold text-xl">₹{car.price_lakh} Lakh</p>
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-2 gap-4 border-y border-gray-100 py-4">
+                        <div className="flex items-center gap-2 text-gray-600 text-sm">
+                          <Gauge size={16} />
+                          <span>{car.details?.mileage || "N/A"}</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-gray-600 text-sm">
+                          <Settings size={16} />
+                          <span>{car.transmission}</span>
+                        </div>
+                      </div>
+                      <a
+                        href={`/truevalue/vehicle/${car.id}`}
+                        className="block w-full bg-[#0e158d] text-white py-3 font-bold rounded-lg text-center hover:bg-[#2b33a2] transition-colors"
+                      >
+                        View Details
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
