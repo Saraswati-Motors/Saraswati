@@ -381,7 +381,6 @@ export default function TrueValueInventory() {
                 </button>
               </div>
             )}
-
           </section>
 
         </div>
