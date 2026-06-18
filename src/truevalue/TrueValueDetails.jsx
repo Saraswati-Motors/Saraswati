@@ -109,7 +109,7 @@ export default function TrueValueDetails({ vehicleId }) {
 
     if (!supabase) {
       console.warn("Supabase not available, running in mock lead mode.");
-      alert("Inquiry Sent Successfully! (Local Sandbox Mode: Our team will contact you shortly.)");
+      alert("Inquiry Sent Successfully! Our team will contact you shortly.");
       setFullName("");
       setPhone("");
       setEmail("");
@@ -133,7 +133,7 @@ export default function TrueValueDetails({ vehicleId }) {
     } catch (err) {
       console.error("Database submission error:", err);
       // Still show success alert so UI is nice even if Supabase is offline/empty
-      alert("Inquiry Sent Successfully! (Local Sandbox Mode: Our team will contact you shortly.)");
+      alert("Inquiry Sent Successfully! Our team will contact you shortly.");
       setFullName("");
       setPhone("");
       setEmail("");

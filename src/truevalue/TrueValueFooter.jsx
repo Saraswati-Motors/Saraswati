@@ -15,6 +15,7 @@ export default function TrueValueFooter() {
     const inquiryData = {
       full_name: fullName,
       phone_number: phone,
+      email_address: email,
       vehicle_name: "General Consultation (Footer Inquiry)",
     };
 
