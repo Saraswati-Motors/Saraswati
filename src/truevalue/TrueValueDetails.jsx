@@ -99,12 +99,23 @@ export default function TrueValueDetails({ vehicleId }) {
     e.preventDefault();
     setSubmitting(true);
 
+    if (!fullName || !fullName.trim()) {
+      alert("Please enter your name.");
+      setSubmitting(false);
+      return;
+    }
+    if (!phone || !phone.trim()) {
+      alert("Please enter your phone number.");
+      setSubmitting(false);
+      return;
+    }
+
     const inquiryData = {
       vehicle_id: car.id,
       vehicle_name: `${car.make} ${car.model} ${car.variant || ""} ${car.year}`,
-      full_name: fullName,
-      phone_number: phone,
-      email_address: email
+      full_name: fullName.trim(),
+      phone_number: phone.trim(),
+      email_address: email && email.trim() ? email.trim() : null
     };
 
     if (!supabase) {
@@ -344,13 +355,12 @@ export default function TrueValueDetails({ vehicleId }) {
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-2">Email Address</label>
+                    <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-2">Email Address (Optional)</label>
                     <input
                       type="email"
                       value={email}
                       onChange={e => setEmail(e.target.value)}
                       placeholder="email@example.com"
-                      required
                       className="w-full h-12 px-4 rounded-lg border border-gray-200 focus:ring-1 focus:ring-[#0e158d] focus:border-[#0e158d] outline-none text-sm font-semibold"
                     />
                   </div>

@@ -12,10 +12,21 @@ export default function TrueValueFooter() {
     e.preventDefault();
     setSubmitting(true);
 
+    if (!fullName || !fullName.trim()) {
+      alert("Please enter your name.");
+      setSubmitting(false);
+      return;
+    }
+    if (!phone || !phone.trim()) {
+      alert("Please enter your phone number.");
+      setSubmitting(false);
+      return;
+    }
+
     const inquiryData = {
-      full_name: fullName,
-      phone_number: phone,
-      email_address: email,
+      full_name: fullName.trim(),
+      phone_number: phone.trim(),
+      email_address: email && email.trim() ? email.trim() : null,
       vehicle_name: "General Consultation (Footer Inquiry)",
     };
 
@@ -127,10 +138,9 @@ export default function TrueValueFooter() {
               <div>
                 <input
                   type="email"
-                  placeholder="Email"
+                  placeholder="Email (Optional)"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  required
                   className="w-full px-3 py-2 bg-gray-800 border border-gray-700 text-white rounded focus:outline-none focus:border-[#a1a8ff] placeholder-gray-500"
                 />
               </div>

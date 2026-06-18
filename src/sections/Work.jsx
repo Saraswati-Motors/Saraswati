@@ -21,7 +21,7 @@ const data = [
 
       At our Rajapur and Old Prayagraj branches, we provide both sales and service for VIDA, making it convenient for customers to adopt and maintain electric vehicles with confidence and ease.</p>,
   },
-  {
+  /*{
     category: "Automobile",
     title: "Harley Davidson",
     src: "/work/harley.webp", //x440
@@ -29,7 +29,7 @@ const data = [
     content: <p>The Harley-Davidson X440 is a result of the partnership between Hero MotoCorp and Harley-Davidson, bringing together global design and trusted engineering. Launched in 2023, it offers a strong road presence along with practical performance for Indian riders.
       You can explore it at our Rajapur branch.
     </p>,
-  },
+  }*/
   {
     category: "Automobile",
     title: "Maruti Suzuki Arena",
