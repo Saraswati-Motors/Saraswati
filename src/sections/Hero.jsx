@@ -31,7 +31,7 @@ export default function Hero() {
 
         {/* Logo */}
         <motion.img
-          src="/saraswati1.png"
+          src="/saraswati.png"
           alt="Saraswati logo"
           style={{ y, scale }}
           className="w-[460px] md:w-[860px] mb-6"
@@ -40,13 +40,13 @@ export default function Hero() {
         {/* Tagline */}
         <div className="text-2xl md:text-4xl font-semibold tracking-wide text-center">
 
-        <span className="inline-block align-middle">
-            <FlipWords words={words} className="text-yellow-400"/>
-        </span>
+          <span className="inline-block align-middle">
+            <FlipWords words={words} className="text-yellow-400" />
+          </span>
 
-        <span className="ml-0.20rem text-white align-middle">
-          Across Every Journey.
-        </span>
+          <span className="ml-0.20rem text-white align-middle">
+            Across Every Journey.
+          </span>
 
         </div>
 
