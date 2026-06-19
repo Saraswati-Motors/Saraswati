@@ -64,7 +64,7 @@ export default function TrueValueHome() {
           <img
             className="w-full h-full object-cover"
             alt="Premium Maruti Suzuki Grand Vitara"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAgSd9Kuw9JqYHHpoEKx9H3Cp7ywBDvKZtCaZGLHSZyLM6065fzYDPMSKDSepW7P6b3PLhBWeVci6uXuU6yzHgz-KgWdN6-CtqYcBCqfhPyFrFooManFx0Xo3_CLdXFTvI1fHy2ucaDYRG7EKj2pE6tx8ON4X4gAeQQ4sCBU7ng5EC2FfOR8nZrBMWrq-pBhcLxFZwA-9zhqDl6PCLEyHV216P4HTfj5BVj8RkqaDpqwhg1tz15MliiLhZeebtKUvaAGUB5sFKF1K5"
+            src="/truevalue/cover.webp"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#131b2e]/90 via-[#131b2e]/40 to-transparent"></div>
         </div>

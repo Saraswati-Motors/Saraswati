@@ -110,8 +110,8 @@ export default function TrueValueFooter() {
         <div className="space-y-6">
           <h4 className="font-bold text-lg text-white border-l-2 border-[#a1a8ff] pl-3">Connect With Us</h4>
           <div className="flex gap-4">
-            <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#0e158d] transition-all"><Facebook size={18} /></a>
-            <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#0e158d] transition-all"><Instagram size={18} /></a>
+            <a href="https://www.facebook.com/SaraswatiMotors.Arena/" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#0e158d] transition-all"><Facebook size={18} /></a>
+            <a href="https://www.instagram.com/saraswatimotorsgroup?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#0e158d] transition-all"><Instagram size={18} /></a>
           </div>
           <div className="pt-4 border-t border-gray-800 space-y-4">
             <p className="font-bold text-white text-sm">Book a Consultation</p>

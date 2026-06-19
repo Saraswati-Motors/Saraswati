@@ -10,7 +10,7 @@ export default function TrueValueAbout() {
             <img
               className="w-full h-full object-cover"
               alt="Saraswati Motors Maruti Suzuki True Value Showroom"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuB50AJiT71Q3OlbFvjq3QXQ40KtUHguqgW0Qn-FXbx_3918keBVuNQ5MUKvYKsaFB7zhVcsQ70FR0fuHcODDKT4_vEP7wv7y1KT2tK5iD8yNGfX7Soau61X-Cg_lhW-AF_--HoLqxZW4Q9yPJ86i9jEN2cWrvuYfGCIDnfd3tJ1WlLr4OgKZSfG-Y4hd-YyyHQxeubKXmkOh4kTjyY4rKcwv_KzGz2EEqH-V0nUcWW1mbi6q86GlWrGmK6rHYVZAZUNiehwhelrmp5t"
+              src="/truevalue/aboutus.webp"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-[#131b2e]/40 to-[#131b2e]/80"></div>
           </div>
@@ -50,7 +50,7 @@ export default function TrueValueAbout() {
               <img
                 className="rounded-2xl shadow-xl w-full aspect-[4/3] object-cover border border-gray-100"
                 alt="Executive Handshake - Customer trust and dealership transparency"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9U2cPy3XStJWq6to0jodIHZ3vEpCo6vv-0gDB0SnvOlWRcqItz8XlHbEMtRsO9rQGhM6TccGdbK4369Pz4kfq4-UgR5q0Zh2XbnUJUV6h6sM3zke4WWk1hpsrX_ET6oR9QbWrmBfiiR-iJSIdYcdZQZZ2OyhoZsBl2LkG__jd8LszfpObh9tRqOsz8Od6ShXGP6De5jgFwikMJ0l9KBzlZYKXYzd4bQA95Bgw7CfMDINQ7OWqhp8hjLgwuz_NtI6b4i9J68pdHkrV"
+                src="/truevalue/handshake.webp"
               />
             </div>
           </div>
@@ -96,7 +96,7 @@ export default function TrueValueAbout() {
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-[#131b2e]">Customer Trust</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Over 25 years of serving the community as an authorized Maruti Suzuki True Value dealer with thousands of happy families.
+                  Over 6 years of serving the community as an authorized Maruti Suzuki True Value dealer with thousands of happy families.
                 </p>
               </div>
             </div>
