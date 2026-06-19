@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { supabase } from "../lib/supabaseClient";
 import { mockCars } from "./mockData";
+import { Link } from "react-router-dom";
 import {
   ShieldCheck,
   Award,
@@ -81,18 +82,18 @@ export default function TrueValueHome() {
               Experience the trust of Maruti Suzuki True Value with Saraswati Motors. Every car undergoes a 376-point quality check for a premium driving experience.
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
-              <a
-                href="/truevalue/inventory"
+              <Link
+                to="/truevalue/inventory"
                 className="bg-[#0e158d] text-white px-8 py-4 font-bold rounded-lg shadow-xl hover:bg-[#2b33a2] transition-all transform hover:-translate-y-0.5 text-center"
               >
                 Explore Inventory
-              </a>
-              <a
-                href="/truevalue/about"
+              </Link>
+              <Link
+                to="/truevalue/about"
                 className="bg-transparent border-2 border-white text-white px-8 py-4 font-bold rounded-lg hover:bg-white/10 transition-all text-center"
               >
                 Learn Our Legacy
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -149,17 +150,17 @@ export default function TrueValueHome() {
               <h2 className="text-3xl md:text-4xl font-bold">Browse by Category</h2>
               <p className="text-gray-500">Find the vehicle that perfectly suits your lifestyle</p>
             </div>
-            <a
-              href="/truevalue/inventory"
+            <Link
+              to="/truevalue/inventory"
               className="text-[#0e158d] font-bold flex items-center gap-2 hover:underline"
             >
               View All Catalogue <ArrowRight size={18} />
-            </a>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* SUVs */}
-            <a href="/truevalue/inventory" className="relative group h-96 overflow-hidden rounded-2xl cursor-pointer block">
+            <Link to="/truevalue/inventory" className="relative group h-96 overflow-hidden rounded-2xl cursor-pointer block">
               <img
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 alt="Maruti Suzuki SUV Category"
@@ -174,10 +175,10 @@ export default function TrueValueHome() {
                   <span className="hidden group-hover:inline font-bold text-sm">Explore</span>
                 </span>
               </div>
-            </a>
+            </Link>
 
             {/* Sedans */}
-            <a href="/truevalue/inventory" className="relative group h-96 overflow-hidden rounded-2xl cursor-pointer block">
+            <Link to="/truevalue/inventory" className="relative group h-96 overflow-hidden rounded-2xl cursor-pointer block">
               <img
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 alt="Maruti Suzuki Sedan Category"
@@ -192,10 +193,10 @@ export default function TrueValueHome() {
                   <span className="hidden group-hover:inline font-bold text-sm">Explore</span>
                 </span>
               </div>
-            </a>
+            </Link>
 
             {/* Hatchbacks */}
-            <a href="/truevalue/inventory" className="relative group h-96 overflow-hidden rounded-2xl cursor-pointer block">
+            <Link to="/truevalue/inventory" className="relative group h-96 overflow-hidden rounded-2xl cursor-pointer block">
               <img
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 alt="Maruti Suzuki Hatchback Category"
@@ -210,7 +211,7 @@ export default function TrueValueHome() {
                   <span className="hidden group-hover:inline font-bold text-sm">Explore</span>
                 </span>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -279,12 +280,12 @@ export default function TrueValueHome() {
                           <span>{car.transmission}</span>
                         </div>
                       </div>
-                      <a
-                        href={`/truevalue/vehicle/${car.id}`}
+                      <Link
+                        to={`/truevalue/vehicle/${car.id}`}
                         className="block w-full bg-[#0e158d] text-white py-3 font-bold rounded-lg text-center hover:bg-[#2b33a2] transition-colors"
                       >
                         View Details
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>

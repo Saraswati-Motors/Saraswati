@@ -4,24 +4,24 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import SmartImage from "../components/SmartImage";
 
 const data = [
-  { year: 1992, image: "/history/1992.jpeg", text: "The journey began with the establishment of our first branch in Rajapur, laying the foundation for our future growth." },
-  { year: 2006, image: "/history/2006.png", text: "Expanded our presence with the launch of operations in Old Prayagraj, strengthening our regional footprint." },
+  { year: 1992, image: "/history/1992.webp", text: "The journey began with the establishment of our first branch in Rajapur, laying the foundation for our future growth." },
+  { year: 2006, image: "/history/2006.webp", text: "Expanded our presence with the launch of operations in Old Prayagraj, strengthening our regional footprint." },
   {
     year: "2014",
-    image: "/history/2014.jpeg",
+    image: "/history/2014.webp",
     text: "Recognized as India’s No. 2 in Hero MotoCorp sales, while simultaneously building one of the country’s largest secondary networks to expand our nationwide presence."
   },
-  { year: 2020, image: "/history/2020.jpeg", text: "Entered a new phase of progress with the launch of our Maruti Suzuki Arena showroom." },
-  { year: 2021, image: "/history/2021.jpeg", text: "Diversified our offerings with the inauguration of the Maruti Suzuki Driving School." },
+  { year: 2020, image: "/history/2020.webp", text: "Entered a new phase of progress with the launch of our Maruti Suzuki Arena showroom." },
+  { year: 2021, image: "/history/2021.webp", text: "Diversified our offerings with the inauguration of the Maruti Suzuki Driving School." },
   {
     year: 2022,
-    image: "/history/2022-koraon.jpeg",
+    image: "/history/2022-koraon.webp",
     text: "Expanded our footprint by opening Arena showrooms in Koraon and Pratapgarh, along with new outlets in Manjhanpur and Kunda, strengthening accessibility and network reach."
   },
-  { year: 2023, image: "/history/2023-naini.jpeg", text: "Opened our Commercial Showroom in Naini, marking a significant step in our growth journey." },
-  { year: 2023, image: "/history/2023-truevalue.jpeg", text: "Launched True Value operations, expanding our presence in the pre-owned vehicle segment." },
-  { year: 2023, image: "/history/2023-nexa.jpeg", text: "Continued our expansion with the introduction of Nexa." },
-  { year: 2024, image: "/history/2024.jpeg", text: "Signed a Letter of Intent (LOI) with Holiday Inn, marking our strategic entry into the hospitality sector." }
+  { year: 2023, image: "/history/2023-naini.webp", text: "Opened our Commercial Showroom in Naini, marking a significant step in our growth journey." },
+  { year: 2023, image: "/history/2023-truevalue.webp", text: "Launched True Value operations, expanding our presence in the pre-owned vehicle segment." },
+  { year: 2023, image: "/history/2023-nexa.webp", text: "Continued our expansion with the introduction of Nexa." },
+  { year: 2024, image: "/history/2024.webp", text: "Signed a Letter of Intent (LOI) with Holiday Inn, marking our strategic entry into the hospitality sector." }
 ];
 
 export default function Timeline() {
@@ -75,6 +75,7 @@ export default function Timeline() {
           >
             <SmartImage
               src={current.image || "/fallback.jpg"}
+              alt={`Saraswati Motors legacy in ${current.year} - ${current.text}`}
               className="w-full h-full object-cover"
             />
           </motion.div>

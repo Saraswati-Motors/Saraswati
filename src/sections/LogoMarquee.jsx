@@ -1,14 +1,14 @@
 export default function LogoMarquee() {
   const logos = [
-    "/hero.png",
-    "/vida.png",
-    "/Maruti suzuki.png",
-    "/arena.png",
-    "/nexa-bg.png",
-    "/commercial.png",
-    "/msds.png",
-    "/truevalue.png",
-    "/holidayinn.png",
+    { src: "/hero.webp", name: "Hero MotoCorp" },
+    { src: "/vida.webp", name: "Vida Electric Scooter" },
+    { src: "/Maruti suzuki.webp", name: "Maruti Suzuki" },
+    { src: "/arena.webp", name: "Maruti Suzuki Arena" },
+    { src: "/nexa-bg.webp", name: "Maruti Suzuki Nexa" },
+    { src: "/commercial.webp", name: "Maruti Suzuki Commercial" },
+    { src: "/msds.webp", name: "Maruti Suzuki Driving School" },
+    { src: "/truevalue.webp", name: "Maruti Suzuki True Value" },
+    { src: "/holidayinn.webp", name: "Holiday Inn" },
   ];
 
   return (
@@ -21,8 +21,8 @@ export default function LogoMarquee() {
             logos.map((logo, j) => (
               <img
                 key={`${i}-${j}`}
-                src={logo}
-                alt="brand logo"
+                src={logo.src}
+                alt={`${logo.name} Logo`}
                 className="h-16 w-auto object-contain opacity-80 hover:opacity-100 transition"
 
               />

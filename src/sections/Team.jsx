@@ -5,18 +5,18 @@ const leaders = [
   {
     name: "Mr. Ankit Raj",
     role: "Managing Director",
-    image: "/team/ankit1.jpeg",
+    image: "/team/ankit1.webp",
     message: "Driven by a heritage of trust and a vision for the future, we are redefining what it means to lead with purpose and serve with passion. Our vision: 'Customer First, Always.'"
   }
 ];
 
 const team = [
-  { name: "Mrs. Suman Srivastava", role: "Managing Director MSDS", image: "/team/suman.png" },
-  { name: "Mr. Dhirendra Kumar", role: "Group Head Operations", image: "/team/dhirendra.png" },
-  { name: "Mr. Jalaj Chaturvedi", role: "Group Head Sales ", image: "/team/jalaj.png" },
-  { name: "Mr. Ashutosh Pandey", role: "General Manager Service", image: "/team/ashutosh.png" },
-  { name: "Mr. Abhishek Dwivedi", role: "Human Resources Head", image: "/team/abhishekd.png" },
-  { name: "Mr. Abhishek Chaurasia", role: "Accounts Head", image: "/team/abhishekc.png" }
+  { name: "Mrs. Suman Srivastava", role: "Managing Director MSDS", image: "/team/suman.webp" },
+  { name: "Mr. Dhirendra Kumar", role: "Group Head Operations", image: "/team/dhirendra.webp" },
+  { name: "Mr. Jalaj Chaturvedi", role: "Group Head Sales ", image: "/team/jalaj.webp" },
+  { name: "Mr. Ashutosh Pandey", role: "General Manager Service", image: "/team/ashutosh.webp" },
+  { name: "Mr. Abhishek Dwivedi", role: "Human Resources Head", image: "/team/abhishekd.webp" },
+  { name: "Mr. Abhishek Chaurasia", role: "Accounts Head", image: "/team/abhishekc.webp" }
 ];
 
 const fadeUp = {
@@ -47,15 +47,15 @@ export default function Team() {
       </div>
 
       {/* LEADERS SECTION */}
-<div className="max-w-7xl mx-auto mb-24">
-  {leaders.map((person, i) => (
-    <motion.div
-      key={i}
-      variants={fadeUp}
-      initial="hidden"
-      animate="show"
-      custom={i}
-      className="
+      <div className="max-w-7xl mx-auto mb-24">
+        {leaders.map((person, i) => (
+          <motion.div
+            key={i}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            custom={i}
+            className="
         bg-[#15284e]
         rounded-2xl
         flex flex-col min-[840px]:flex-row
@@ -63,45 +63,46 @@ export default function Team() {
         shadow-lg
         overflow-hidden
       "
-    >
+          >
 
-      {/* LEFT SIDE */}
-      <div className="w-full min-[840px]:w-1/2 flex justify-center items-center py-10 px-6">
-        
-        {/* White image card with margin from the blue border */}
-        <div className="bg-white rounded-xl shadow-md p-4 mx-4">
-          <SmartImage
-            src={person.image}
-            className="h-[320px] min-[840px]:h-[380px] w-auto object-contain"
-          />
-        </div>
+            {/* LEFT SIDE */}
+            <div className="w-full min-[840px]:w-1/2 flex justify-center items-center py-10 px-6">
 
-      </div>
+              {/* White image card with margin from the blue border */}
+              <div className="bg-white rounded-xl shadow-md p-4 mx-4">
+                <SmartImage
+                  src={person.image}
+                  alt={`${person.name} - ${person.role}`}
+                  className="h-[320px] min-[840px]:h-[380px] w-auto object-contain"
+                />
+              </div>
 
-      {/* RIGHT SIDE */}
-      <div className="
+            </div>
+
+            {/* RIGHT SIDE */}
+            <div className="
         w-full min-[840px]:w-1/2
         bg-[#1f3b73]
         text-white
         px-10 min-[840px]:px-16 py-12
         text-center min-[840px]:text-left
       ">
-        <h3 className="text-3xl min-[840px]:text-4xl font-semibold mb-3">
-          {person.name}
-        </h3>
+              <h3 className="text-3xl min-[840px]:text-4xl font-semibold mb-3">
+                {person.name}
+              </h3>
 
-        <p className="text-white/70 mb-4 text-lg">
-          {person.role}
-        </p>
+              <p className="text-white/70 mb-4 text-lg">
+                {person.role}
+              </p>
 
-        <p className="text-lg min-[840px]:text-xl leading-relaxed max-w-md mx-auto min-[840px]:mx-0">
-          {person.message}
-        </p>
+              <p className="text-lg min-[840px]:text-xl leading-relaxed max-w-md mx-auto min-[840px]:mx-0">
+                {person.message}
+              </p>
+            </div>
+
+          </motion.div>
+        ))}
       </div>
-
-    </motion.div>
-  ))}
-</div>
 
       {/* TEAM GRID */}
       <div className="grid grid-cols-2 min-[840px]:grid-cols-3 gap-6 min-[840px]:gap-10 max-w-7xl mx-auto">
@@ -133,6 +134,7 @@ export default function Team() {
             ">
               <SmartImage
                 src={member.image}
+                alt={`${member.name} - ${member.role}`}
                 className="h-full w-full object-contain object-bottom"
               />
             </div>

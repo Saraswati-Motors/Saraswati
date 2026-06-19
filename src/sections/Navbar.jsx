@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const links = [
     { name: "About us", path: "about" },
@@ -31,9 +33,7 @@ export default function Navbar() {
 
   const handleLinkClick = (item) => {
     if (item.isPage) {
-      window.history.pushState({}, "", item.path);
-      window.dispatchEvent(new Event("popstate"));
-      window.scrollTo(0, 0);
+      navigate(item.path);
       setOpen(false);
     } else {
       handleScroll(item.path);

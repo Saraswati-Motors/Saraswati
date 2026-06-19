@@ -92,7 +92,7 @@ const data = [
   {
     category: "Hospitality",
     title: "Holiday Inn (Upcoming)",
-    src: "/work/inn.png",
+    src: "/work/inn.webp",
     link: "https://www.holidayinn.com/",
     content: <p>Our upcoming Holiday Inn project reflects a step towards premium hospitality, bringing globally recognized standards of comfort, service, and modern infrastructure. Known for its quality experience and customer-focused approach, Holiday Inn represents reliability and excellence in the hospitality industry.
 

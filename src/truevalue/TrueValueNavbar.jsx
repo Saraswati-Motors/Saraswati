@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
 
-export default function TrueValueNavbar({ currentPath }) {
+export default function TrueValueNavbar() {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   const links = [
     { name: "Buy Cars", path: "/truevalue/inventory" },
@@ -16,7 +19,7 @@ export default function TrueValueNavbar({ currentPath }) {
       <header className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
         <div className="flex justify-between items-center h-20 px-6 md:px-12 max-w-7xl mx-auto">
           {/* Logo & Branding */}
-          <a href="/truevalue" className="flex items-center gap-4">
+          <Link to="/truevalue" className="flex items-center gap-4">
             <img
               alt="Saraswati Motors Logo"
               className="h-10 w-auto"
@@ -25,26 +28,31 @@ export default function TrueValueNavbar({ currentPath }) {
             <span className="text-xl md:text-2xl font-bold text-[#0e158d] tracking-tight">
               Saraswati Motors <span className="text-sm font-semibold text-gray-500 block md:inline md:ml-2 uppercase tracking-widest border-l-0 md:border-l md:pl-2 border-gray-300">True Value</span>
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             {links.map((link) => {
               const isActive = currentPath === link.path;
               return (
-                <a
+                <Link
                   key={link.path}
-                  href={link.path}
+                  to={link.path}
                   className={`font-semibold text-base transition-colors ${isActive
                     ? "text-[#0e158d] border-b-2 border-[#0e158d] pb-1"
                     : "text-gray-600 hover:text-[#0e158d]"
                     }`}
                 >
                   {link.name}
-                </a>
+                </Link>
               );
             })}
           </nav>
+
+          {/* Mobile Toggle */}
+          <button className="md:hidden text-gray-600" onClick={() => setOpen(!open)}>
+            {open ? <X size={26} /> : <Menu size={26} />}
+          </button>
         </div>
       </header>
 
@@ -60,15 +68,15 @@ export default function TrueValueNavbar({ currentPath }) {
           >
             <div className="flex flex-col gap-6 text-lg font-semibold">
               {links.map((link) => (
-                <a
+                <Link
                   key={link.path}
-                  href={link.path}
+                  to={link.path}
                   onClick={() => setOpen(false)}
                   className={`py-2 border-b border-gray-100 ${currentPath === link.path ? "text-[#0e158d]" : "text-gray-600"
                     }`}
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
             </div>
           </motion.div>

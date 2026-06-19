@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { supabase } from "../lib/supabaseClient";
 import { mockCars } from "./mockData";
+import { Link } from "react-router-dom";
 import {
   Calendar,
   MapPin,
@@ -357,12 +358,12 @@ export default function TrueValueInventory() {
 
                       {/* Action buttons */}
                       <div className="mt-auto pt-6 border-t border-gray-100">
-                        <a
-                          href={`/truevalue/vehicle/${car.id}`}
+                        <Link
+                          to={`/truevalue/vehicle/${car.id}`}
                           className="w-full py-3 bg-[#0e158d] text-white font-bold text-sm rounded-lg hover:bg-[#2b33a2] text-center block"
                         >
                           View Details
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>

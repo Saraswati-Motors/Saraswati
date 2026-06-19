@@ -28,6 +28,7 @@ export default function SectionSlider({ slides }) {
               {/* Background Image */}
               <img
                 src={slide.image}
+                alt={slide.alt || slide.title || "Slider background image"}
                 loading="lazy"
                 className="absolute w-full h-full object-cover"
               />

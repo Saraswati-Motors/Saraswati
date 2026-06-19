@@ -9,7 +9,7 @@ export default function TrueValueAbout() {
           <div className="absolute inset-0 z-0">
             <img
               className="w-full h-full object-cover"
-              alt="Automotive Showroom"
+              alt="Saraswati Motors Maruti Suzuki True Value Showroom"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuB50AJiT71Q3OlbFvjq3QXQ40KtUHguqgW0Qn-FXbx_3918keBVuNQ5MUKvYKsaFB7zhVcsQ70FR0fuHcODDKT4_vEP7wv7y1KT2tK5iD8yNGfX7Soau61X-Cg_lhW-AF_--HoLqxZW4Q9yPJ86i9jEN2cWrvuYfGCIDnfd3tJ1WlLr4OgKZSfG-Y4hd-YyyHQxeubKXmkOh4kTjyY4rKcwv_KzGz2EEqH-V0nUcWW1mbi6q86GlWrGmK6rHYVZAZUNiehwhelrmp5t"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-[#131b2e]/40 to-[#131b2e]/80"></div>
@@ -49,7 +49,7 @@ export default function TrueValueAbout() {
             <div className="relative">
               <img
                 className="rounded-2xl shadow-xl w-full aspect-[4/3] object-cover border border-gray-100"
-                alt="dealership handshake"
+                alt="Executive Handshake - Customer trust and dealership transparency"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9U2cPy3XStJWq6to0jodIHZ3vEpCo6vv-0gDB0SnvOlWRcqItz8XlHbEMtRsO9rQGhM6TccGdbK4369Pz4kfq4-UgR5q0Zh2XbnUJUV6h6sM3zke4WWk1hpsrX_ET6oR9QbWrmBfiiR-iJSIdYcdZQZZ2OyhoZsBl2LkG__jd8LszfpObh9tRqOsz8Od6ShXGP6De5jgFwikMJ0l9KBzlZYKXYzd4bQA95Bgw7CfMDINQ7OWqhp8hjLgwuz_NtI6b4i9J68pdHkrV"
               />
             </div>

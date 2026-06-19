@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabaseClient";
 import { mockCars } from "./mockData";
+import { useParams, Link } from "react-router-dom";
 import {
   Gauge,
   Settings,
@@ -15,7 +16,9 @@ import {
   Heart
 } from "lucide-react";
 
-export default function TrueValueDetails({ vehicleId }) {
+export default function TrueValueDetails() {
+  const { id } = useParams();
+  const vehicleId = id;
   const [car, setCar] = useState(null);
   const [similarCars, setSimilarCars] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -165,7 +168,7 @@ export default function TrueValueDetails({ vehicleId }) {
     return (
       <div className="bg-[#faf8ff] text-[#131b2e] min-h-screen flex flex-col items-center justify-center gap-4">
         <h2 className="text-2xl font-bold">Vehicle Not Found</h2>
-        <a href="/truevalue/inventory" className="bg-[#0e158d] text-white px-6 py-3 rounded-lg font-bold">Back to Inventory</a>
+        <Link to="/truevalue/inventory" className="bg-[#0e158d] text-white px-6 py-3 rounded-lg font-bold">Back to Inventory</Link>
       </div>
     );
   }
@@ -178,7 +181,7 @@ export default function TrueValueDetails({ vehicleId }) {
 
         {/* Breadcrumbs */}
         <nav className="mb-8 flex items-center gap-2 text-xs font-bold text-gray-400 uppercase tracking-wider">
-          <a className="hover:text-[#0e158d] transition-colors" href="/truevalue/inventory">Inventory</a>
+          <Link className="hover:text-[#0e158d] transition-colors" to="/truevalue/inventory">Inventory</Link>
           <ChevronRight size={14} />
           <span className="text-gray-400">{car.make}</span>
           <ChevronRight size={14} />
@@ -385,12 +388,12 @@ export default function TrueValueDetails({ vehicleId }) {
                 <h2 className="text-3xl font-extrabold text-[#131b2e] tracking-tight">Similar Suggestions</h2>
                 <p className="text-gray-500 mt-1">Recommended certified vehicles for you</p>
               </div>
-              <a
-                href="/truevalue/inventory"
+              <Link
+                to="/truevalue/inventory"
                 className="text-[#0e158d] font-bold flex items-center gap-2 hover:gap-3 transition-all"
               >
                 View All Inventory <ArrowRight size={18} />
-              </a>
+              </Link>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -411,12 +414,12 @@ export default function TrueValueDetails({ vehicleId }) {
                     <p className="text-xs text-gray-500 font-semibold mb-4">{similar.year} | {similar.variant} | {similar.mileage_km.toLocaleString()} km</p>
                     <div className="flex justify-between items-center mt-auto">
                       <span className="text-lg font-bold text-[#0e158d]">₹{similar.price_lakh} Lakh</span>
-                      <a
-                        href={`/truevalue/vehicle/${similar.id}`}
+                      <Link
+                        to={`/truevalue/vehicle/${similar.id}`}
                         className="border border-gray-200 text-[#131b2e] hover:bg-[#0e158d] hover:text-white px-4 py-2 rounded-lg text-xs font-bold transition-all"
                       >
                         Details
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>

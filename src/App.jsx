@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css'
 import AboutUs from './sections/AboutUs';
 import Hero from './sections/Hero';
@@ -19,60 +19,7 @@ import TrueValueAbout from './truevalue/TrueValueAbout';
 import TrueValueDetails from './truevalue/TrueValueDetails';
 import TrueValueFooter from './truevalue/TrueValueFooter';
 
-export default function App() {
-  const [currentPath, setCurrentPath] = useState(window.location.pathname);
-
-  useEffect(() => {
-    const handleLocationChange = () => {
-      setCurrentPath(window.location.pathname);
-    };
-    window.addEventListener("popstate", handleLocationChange);
-    
-    // Intercept clicks on links that are internal
-    const handleLinkClick = (e) => {
-      const anchor = e.target.closest("a");
-      if (anchor && anchor.href && anchor.host === window.location.host) {
-        const path = anchor.pathname;
-        if (path.startsWith("/truevalue") || path === "/") {
-          e.preventDefault();
-          window.history.pushState({}, "", path);
-          setCurrentPath(path);
-          window.scrollTo(0, 0);
-        }
-      }
-    };
-    document.addEventListener("click", handleLinkClick);
-
-    return () => {
-      window.removeEventListener("popstate", handleLocationChange);
-      document.removeEventListener("click", handleLinkClick);
-    };
-  }, []);
-
-  // True Value Routing
-  if (currentPath.startsWith("/truevalue")) {
-    let PageComponent = <TrueValueHome />;
-    let vehicleId = null;
-
-    if (currentPath === "/truevalue/inventory") {
-      PageComponent = <TrueValueInventory />;
-    } else if (currentPath === "/truevalue/about") {
-      PageComponent = <TrueValueAbout />;
-    } else if (currentPath.startsWith("/truevalue/vehicle/")) {
-      vehicleId = currentPath.substring("/truevalue/vehicle/".length);
-      PageComponent = <TrueValueDetails vehicleId={vehicleId} />;
-    }
-
-    return (
-      <>
-        <TrueValueNavbar currentPath={currentPath} />
-        {PageComponent}
-        <TrueValueFooter />
-      </>
-    );
-  }
-
-  // Main Site (Default Route)
+function MainSite() {
   return (
     <>
       <Navbar />
@@ -89,6 +36,61 @@ export default function App() {
 
       <FooterBar />
     </>
+  );
+}
+
+function TrueValueLayout({ children }) {
+  return (
+    <>
+      <TrueValueNavbar />
+      {children}
+      <TrueValueFooter />
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        {/* Main Site Route */}
+        <Route path="/" element={<MainSite />} />
+
+        {/* True Value Portal Routes */}
+        <Route
+          path="/truevalue"
+          element={
+            <TrueValueLayout>
+              <TrueValueHome />
+            </TrueValueLayout>
+          }
+        />
+        <Route
+          path="/truevalue/inventory"
+          element={
+            <TrueValueLayout>
+              <TrueValueInventory />
+            </TrueValueLayout>
+          }
+        />
+        <Route
+          path="/truevalue/about"
+          element={
+            <TrueValueLayout>
+              <TrueValueAbout />
+            </TrueValueLayout>
+          }
+        />
+        <Route
+          path="/truevalue/vehicle/:id"
+          element={
+            <TrueValueLayout>
+              <TrueValueDetails />
+            </TrueValueLayout>
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 

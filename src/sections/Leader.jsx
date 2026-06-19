@@ -7,8 +7,8 @@ export default function Leader() {
       {/* IMAGE */}
       <div className="leader__imageWrapper">
         <img
-          src="/nana.png"
-          alt="Leader"
+          src="/nana.webp"
+          alt="Mr. G.P Srivastava - Founder and Chairman, Saraswati Group"
           className="leader__image"
         />
       </div>

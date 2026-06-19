@@ -39,7 +39,7 @@ export default function FooterBar() {
 
         {/* LEFT - LOGO */}
         <div className="flex items-center gap-3">
-          <img src="/saraswati.png" className="h-16" />
+          <img src="/saraswati.webp" className="h-16" alt="Saraswati Motors Group Logo" />
         </div>
 
         {/* RIGHT - DOCK */}

@@ -18,7 +18,7 @@ export default function Hero() {
     <section
       className="relative w-full h-screen flex items-center justify-center text-white overflow-hidden"
       style={{
-        backgroundImage: "url('/bg.jpeg')", // put image in public folder
+        backgroundImage: "url('/bg.webp')", // put image in public folder
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -31,8 +31,8 @@ export default function Hero() {
 
         {/* Logo */}
         <motion.img
-          src="/saraswati.png"
-          alt="Saraswati logo"
+          src="/saraswati.webp"
+          alt="Saraswati Motors Group Logo"
           style={{ y, scale }}
           className="w-[460px] md:w-[860px] mb-6"
         />

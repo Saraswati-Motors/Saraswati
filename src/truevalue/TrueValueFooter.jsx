@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 import { MapPin, Phone, Clock, Facebook, Instagram, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function TrueValueFooter() {
   const [fullName, setFullName] = useState("");
@@ -67,7 +68,7 @@ export default function TrueValueFooter() {
         {/* Col 1 */}
         <div className="space-y-6">
           <img
-            src="/s.png"
+            src="/s.webp"
             alt="Maruti Suzuki True Value Logo"
             className="h-12 w-auto mb-4"
           />
@@ -88,9 +89,9 @@ export default function TrueValueFooter() {
         <div className="space-y-6">
           <h4 className="font-bold text-lg text-white border-l-2 border-[#a1a8ff] pl-3">Quick Links</h4>
           <ul className="space-y-3 text-sm text-gray-400">
-            <li><a href="/truevalue/inventory" className="hover:text-white transition-colors">Browse Inventory</a></li>
-            <li><a href="/truevalue/about" className="hover:text-white transition-colors">About Us</a></li>
-            <li><a href="/" className="hover:text-white transition-colors font-bold text-[#a1a8ff]">Main Website</a></li>
+            <li><Link to="/truevalue/inventory" className="hover:text-white transition-colors">Browse Inventory</Link></li>
+            <li><Link to="/truevalue/about" className="hover:text-white transition-colors">About Us</Link></li>
+            <li><Link to="/" className="hover:text-white transition-colors font-bold text-[#a1a8ff]">Main Website</Link></li>
           </ul>
         </div>
 
@@ -98,10 +99,10 @@ export default function TrueValueFooter() {
         <div className="space-y-6">
           <h4 className="font-bold text-lg text-white border-l-2 border-[#a1a8ff] pl-3">Popular Models</h4>
           <ul className="space-y-3 text-sm text-gray-400">
-            <li><a href="/truevalue/inventory" className="hover:text-white transition-colors">Maruti Swift</a></li>
-            <li><a href="/truevalue/inventory" className="hover:text-white transition-colors">Maruti Baleno</a></li>
-            <li><a href="/truevalue/inventory" className="hover:text-white transition-colors">Maruti Vitara Brezza</a></li>
-            <li><a href="/truevalue/inventory" className="hover:text-white transition-colors">Maruti Grand Vitara</a></li>
+            <li><Link to="/truevalue/inventory" className="hover:text-white transition-colors">Maruti Swift</Link></li>
+            <li><Link to="/truevalue/inventory" className="hover:text-white transition-colors">Maruti Baleno</Link></li>
+            <li><Link to="/truevalue/inventory" className="hover:text-white transition-colors">Maruti Vitara Brezza</Link></li>
+            <li><Link to="/truevalue/inventory" className="hover:text-white transition-colors">Maruti Grand Vitara</Link></li>
           </ul>
         </div>
 

@@ -6,25 +6,25 @@ export default function AboutUs() {
   const cards = [
     {
       title: "Legacy Since 1992",
-      image: "/about/1.jpg",
+      image: "/about/1.webp",
       long:
         "Founded in 1992, Saraswati Group began with Hero and grew into one of Prayagraj’s most respected business houses. Built on integrity and long-term relationships, our foundation continues to guide every milestone."
     },
     {
       title: "Trusted Global Names",
-      image: "/about/2.jpeg",
+      image: "/about/2.webp",
       long:
         "What began with Hero evolved into partnerships with iconic brands like Maruti Suzuki and Nexa and soon, Holiday Inn. Each step reflects our commitment to aligning with globally trusted names."
     },
     {
       title: "Customer First. Always.",
-      image: "/about/3.jpeg",
+      image: "/about/3.webp",
       long:
         "At Saraswati Group, every interaction is guided by transparency, service quality, and long-term value. From first inquiry to ongoing support, we focus on delivering seamless experiences that build lasting confidence."
     },
     {
       title: "Growth with Responsibility",
-      image: "/about/4.JPG",
+      image: "/about/4.webp",
       long:
         "Beyond business growth, we invest in community nourishment initiatives and meaningful social responsibility programs. As we expand into future ventures, our values remain rooted in integrity and purpose."
     }
