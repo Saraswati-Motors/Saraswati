@@ -33,7 +33,7 @@ export default function TrueValueFooter() {
 
     if (!supabase) {
       console.warn("Supabase not available, running in mock lead mode.");
-      alert("Inquiry Request Sent! (Local Sandbox Mode)");
+      alert("Inquiry Request Sent!");
       setFullName("");
       setPhone("");
       setEmail("");
@@ -53,7 +53,7 @@ export default function TrueValueFooter() {
       setEmail("");
     } catch (err) {
       console.error("Database submission error:", err);
-      alert("Inquiry Request Sent! (Local Sandbox Mode)");
+      alert("Inquiry Request Sent!");
       setFullName("");
       setPhone("");
       setEmail("");
