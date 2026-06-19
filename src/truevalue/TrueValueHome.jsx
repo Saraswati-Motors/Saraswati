@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { supabase } from "../lib/supabaseClient";
 import { mockCars } from "./mockData";
 import { Link } from "react-router-dom";
+import TrueValueTestimonials from "./TrueValueTestimonials";
 import {
   ShieldCheck,
   Award,
@@ -10,7 +11,10 @@ import {
   ChevronLeft,
   ChevronRight,
   Gauge,
-  Settings
+  Settings,
+  MapPin,
+  Phone,
+  Clock
 } from "lucide-react";
 
 export default function TrueValueHome() {
@@ -217,6 +221,66 @@ export default function TrueValueHome() {
                 </div>
               ))
             )}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <TrueValueTestimonials />
+
+      {/* Google Map Section */}
+      <section className="py-24 px-6 md:px-12 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          {/* Info Card */}
+          <div className="lg:col-span-5 space-y-6">
+            <span className="inline-block bg-[#e0e0ff] text-[#0e158d] px-4 py-1 text-xs font-bold uppercase tracking-widest rounded-full">
+              Location Details
+            </span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#131b2e] tracking-tight">
+              Visit Saraswati Motors <br />
+              <span className="text-[#0e158d]">True Value Showroom</span>
+            </h2>
+            <p className="text-gray-600 leading-relaxed text-sm">
+              Drop by our showroom in Prayagraj to check out our collection of certified pre-owned vehicles. Our experts are ready to guide you through inspection reports, paper transfers, and easy financing options.
+            </p>
+            
+            <div className="space-y-4 pt-4 border-t border-gray-100 text-sm text-gray-700">
+              <div className="flex items-start gap-4">
+                <MapPin className="text-[#0e158d] mt-1 flex-shrink-0" size={20} />
+                <div>
+                  <h4 className="font-bold text-[#131b2e]">Address</h4>
+                  <p className="text-gray-500 mt-1">Jhunsi, Prayagraj, Uttar Pradesh - 211019</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <Phone className="text-[#0e158d] mt-1 flex-shrink-0" size={20} />
+                <div>
+                  <h4 className="font-bold text-[#131b2e]">Contact Phone</h4>
+                  <p className="text-gray-500 mt-1">+91 - 9151041530</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <Clock className="text-[#0e158d] mt-1 flex-shrink-0" size={20} />
+                <div>
+                  <h4 className="font-bold text-[#131b2e]">Operating Hours</h4>
+                  <p className="text-gray-500 mt-1">Monday - Sunday: 10:00 AM - 07:00 PM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Map Embed Container */}
+          <div className="lg:col-span-7 h-[400px] w-full rounded-2xl overflow-hidden border border-gray-200 shadow-xl relative bg-gray-50">
+            <iframe
+              title="Saraswati Motors True Value Location Map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d230553.11187347336!2d81.54165568671873!3d25.458570400000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39854dcecaf25eb5%3A0xa9e813fbc2fba488!2sMaruti%20Suzuki%20True%20Value%20(Saraswati%20Motors%2C%20Prayagraj%2C%20Jhunsi)!5e0!3m2!1sen!2sin!4v1781884056307!5m2!1sen!2sin"
+              className="w-full h-full border-0"
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </div>
       </section>

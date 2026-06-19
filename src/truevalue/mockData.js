@@ -29,7 +29,16 @@ export const mockCars = [
     details: {
       mileage: "19.01 kmpl",
       engine_capacity: "1462 cc",
-      max_power: "103 bhp @ 6000 rpm"
+      max_power: "103 bhp @ 6000 rpm",
+      color: "Auburn Red"
+    },
+    ratings: {
+      overall: 4.6,
+      exterior: 4.5,
+      interior: 4.7,
+      engine: 4.6,
+      functions: 4.5,
+      frame: 4.7
     }
   },
   {
@@ -59,7 +68,16 @@ export const mockCars = [
     details: {
       mileage: "22.3 kmpl",
       engine_capacity: "1197 cc",
-      max_power: "89 bhp @ 6000 rpm"
+      max_power: "89 bhp @ 6000 rpm",
+      color: "Nexa Blue"
+    },
+    ratings: {
+      overall: 4.4,
+      exterior: 4.3,
+      interior: 4.5,
+      engine: 4.4,
+      functions: 4.3,
+      frame: 4.6
     }
   },
   {
@@ -89,7 +107,16 @@ export const mockCars = [
     details: {
       mileage: "20.8 kmpl",
       engine_capacity: "1197 cc",
-      max_power: "88 bhp @ 6000 rpm"
+      max_power: "88 bhp @ 6000 rpm",
+      color: "Solid Fire Red"
+    },
+    ratings: {
+      overall: 4.2,
+      exterior: 4.1,
+      interior: 4.2,
+      engine: 4.3,
+      functions: 4.1,
+      frame: 4.4
     }
   },
   {
@@ -117,7 +144,16 @@ export const mockCars = [
     details: {
       mileage: "21.2 kmpl",
       engine_capacity: "1498 cc",
-      max_power: "94 bhp @ 4000 rpm"
+      max_power: "94 bhp @ 4000 rpm",
+      color: "Metallic Premium Silver"
+    },
+    ratings: {
+      overall: 4.1,
+      exterior: 3.9,
+      interior: 4.2,
+      engine: 4.1,
+      functions: 4.0,
+      frame: 4.3
     }
   },
   {
@@ -147,7 +183,53 @@ export const mockCars = [
     details: {
       mileage: "27.9 km/l",
       engine_capacity: "1490 cc",
-      max_power: "91 bhp @ 5500 rpm"
+      max_power: "91 bhp @ 5500 rpm",
+      color: "Grandeur Grey"
+    },
+    ratings: {
+      overall: 4.8,
+      exterior: 4.8,
+      interior: 4.9,
+      engine: 4.8,
+      functions: 4.7,
+      frame: 4.9
+    }
+  },
+  {
+    id: "wagonr-lpg-2020",
+    make: "Maruti Suzuki",
+    model: "Wagon R",
+    variant: "LXI LPG",
+    year: 2020,
+    mileage_km: 35000,
+    fuel_type: "LPG",
+    transmission: "Manual",
+    price_lakh: 4.20,
+    location: "Jhunsi, Prayagraj",
+    is_certified: true,
+    is_featured: false,
+    badge: "Value Buy",
+    engine: "998 cc, K10B",
+    max_power: "67 bhp @ 5500 rpm",
+    seating_capacity: "5 Seater",
+    ownership: "Second Owner",
+    insurance: "Comprehensive (Valid Jun 2025)",
+    description: "Very economical and reliable Maruti Suzuki Wagon R with factory-fitted LPG kit. Ideal for daily city commuting, certified by True Value with complete inspection details.",
+    image_url: "https://lh3.googleusercontent.com/aida-public/AB6AXuAMc7G0-yFUSIy1FCLlzMieF021GjDoSVWSUJMl6MImts91jJSWwXV6ifvoVt_Jgl0tv_YkQmhoV3umZstG4fk-aGA7ronJPr1nKltIccfO_COw5vzusAxs6CCO0ukHRAYhXOTE_fCte62QrjFnq16zXPWilEbBn0ZbMqAHXtsJbAmFZalWDEZuSXO6VjUHTHW3HXwIinW1Dab1ddx7kg277XZSRKUb5WdkZ-ngmptL69Ocsis8fL2PKaNkDuiQrN8nAXH__TLbZn8P",
+    gallery: [],
+    details: {
+      mileage: "26.2 km/kg",
+      engine_capacity: "998 cc",
+      max_power: "67 bhp @ 5500 rpm",
+      color: "Silky Silver"
+    },
+    ratings: {
+      overall: 4.0,
+      exterior: 3.8,
+      interior: 4.0,
+      engine: 4.1,
+      functions: 3.9,
+      frame: 4.2
     }
   }
 ];

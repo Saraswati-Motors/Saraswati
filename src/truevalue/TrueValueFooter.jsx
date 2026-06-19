@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 export default function TrueValueFooter() {
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
+  const [location, setLocation] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [email, setEmail] = useState("");
 
@@ -23,11 +24,17 @@ export default function TrueValueFooter() {
       setSubmitting(false);
       return;
     }
+    if (!location || !location.trim()) {
+      alert("Please enter your location.");
+      setSubmitting(false);
+      return;
+    }
 
     const inquiryData = {
       full_name: fullName.trim(),
       phone_number: phone.trim(),
       email_address: email && email.trim() ? email.trim() : null,
+      location: location.trim(),
       vehicle_name: "General Consultation (Footer Inquiry)",
     };
 
@@ -37,6 +44,7 @@ export default function TrueValueFooter() {
       setFullName("");
       setPhone("");
       setEmail("");
+      setLocation("");
       setSubmitting(false);
       return;
     }
@@ -51,12 +59,14 @@ export default function TrueValueFooter() {
       setFullName("");
       setPhone("");
       setEmail("");
+      setLocation("");
     } catch (err) {
       console.error("Database submission error:", err);
       alert("Inquiry Request Sent!");
       setFullName("");
       setPhone("");
       setEmail("");
+      setLocation("");
     } finally {
       setSubmitting(false);
     }
@@ -132,6 +142,16 @@ export default function TrueValueFooter() {
                   placeholder="Phone Number"
                   value={phone}
                   onChange={e => setPhone(e.target.value)}
+                  required
+                  className="w-full px-3 py-2 bg-gray-800 border border-gray-700 text-white rounded focus:outline-none focus:border-[#a1a8ff] placeholder-gray-500"
+                />
+              </div>
+              <div>
+                <input
+                  type="text"
+                  placeholder="Location"
+                  value={location}
+                  onChange={e => setLocation(e.target.value)}
                   required
                   className="w-full px-3 py-2 bg-gray-800 border border-gray-700 text-white rounded focus:outline-none focus:border-[#a1a8ff] placeholder-gray-500"
                 />

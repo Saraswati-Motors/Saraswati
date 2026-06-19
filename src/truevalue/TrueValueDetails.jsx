@@ -2,6 +2,53 @@ import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabaseClient";
 import { mockCars } from "./mockData";
 import { useParams, Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
+function DonutRating({ rating, maxRating = 5, label, color = "#0e158d" }) {
+  const percentage = (rating / maxRating) * 100;
+  const radius = 28;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (percentage / 100) * circumference;
+
+  return (
+    <div className="flex flex-col items-center justify-center p-5 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+      <div className="relative w-20 h-20 flex items-center justify-center">
+        <svg className="w-full h-full transform -rotate-90" viewBox="0 0 80 80">
+          {/* Background circle */}
+          <circle
+            cx="40"
+            cy="40"
+            r={radius}
+            className="stroke-gray-100 fill-none"
+            strokeWidth="5"
+          />
+          {/* Foreground circle */}
+          <motion.circle
+            cx="40"
+            cy="40"
+            r={radius}
+            className="fill-none"
+            stroke={color}
+            strokeWidth="5.5"
+            strokeDasharray={circumference}
+            initial={{ strokeDashoffset: circumference }}
+            animate={{ strokeDashoffset }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            strokeLinecap="round"
+          />
+        </svg>
+        {/* Rating text in center */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <span className="text-base font-extrabold text-[#131b2e] leading-none">{rating.toFixed(1)}</span>
+          <span className="text-[8px] font-bold text-gray-400 mt-0.5">/ {maxRating}</span>
+        </div>
+      </div>
+      <span className="text-xs font-bold text-gray-500 uppercase tracking-wide mt-3 text-center">
+        {label}
+      </span>
+    </div>
+  );
+}
 import {
   Gauge,
   Settings,
@@ -28,6 +75,7 @@ export default function TrueValueDetails() {
   // Form states
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
+  const [location, setLocation] = useState("");
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
@@ -112,13 +160,19 @@ export default function TrueValueDetails() {
       setSubmitting(false);
       return;
     }
+    if (!location || !location.trim()) {
+      alert("Please enter your location.");
+      setSubmitting(false);
+      return;
+    }
 
     const inquiryData = {
       vehicle_id: car.id,
       vehicle_name: `${car.make} ${car.model} ${car.variant || ""} ${car.year}`,
       full_name: fullName.trim(),
       phone_number: phone.trim(),
-      email_address: email && email.trim() ? email.trim() : null
+      email_address: email && email.trim() ? email.trim() : null,
+      location: location.trim()
     };
 
     if (!supabase) {
@@ -127,6 +181,7 @@ export default function TrueValueDetails() {
       setFullName("");
       setPhone("");
       setEmail("");
+      setLocation("");
       setSubmitting(false);
       return;
     }
@@ -144,6 +199,7 @@ export default function TrueValueDetails() {
       setFullName("");
       setPhone("");
       setEmail("");
+      setLocation("");
     } catch (err) {
       console.error("Database submission error:", err);
       // Still show success alert so UI is nice even if Supabase is offline/empty
@@ -151,6 +207,7 @@ export default function TrueValueDetails() {
       setFullName("");
       setPhone("");
       setEmail("");
+      setLocation("");
     } finally {
       setSubmitting(false);
     }
@@ -276,6 +333,34 @@ export default function TrueValueDetails() {
                   <span className="text-xs font-bold text-gray-400 uppercase">Insurance</span>
                   <span className="font-semibold text-gray-700">{car.insurance}</span>
                 </div>
+                <div className="flex justify-between items-center py-4 border-b border-gray-100">
+                  <span className="text-xs font-bold text-gray-400 uppercase">Car Color</span>
+                  <span className="font-semibold text-gray-700">{car.details?.color || "N/A"}</span>
+                </div>
+              </div>
+            </section>
+
+            {/* Certified Inspection Report Section */}
+            <section className="bg-gradient-to-br from-[#faf8ff] to-[#f3f4ff] p-8 rounded-2xl border border-blue-100/50 space-y-6">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                  <h2 className="text-2xl font-bold text-[#131b2e] border-l-4 border-[#0e158d] pl-4">
+                    376-Point Inspection Report
+                  </h2>
+                  <p className="text-gray-500 text-sm mt-1">Certified quality ratings checked by Maruti Suzuki engineers</p>
+                </div>
+                <span className="bg-emerald-100 text-emerald-800 px-4 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wider self-start md:self-auto border border-emerald-200">
+                  Certified Pass
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-4">
+                <DonutRating rating={car.ratings?.overall || 4.5} label="Overall Rating" color="#0e158d" />
+                <DonutRating rating={car.ratings?.exterior || 4.2} label="Exterior" color="#e11d48" />
+                <DonutRating rating={car.ratings?.interior || 4.4} label="Interior + Elec" color="#d97706" />
+                <DonutRating rating={car.ratings?.engine || 4.6} label="Engine" color="#059669" />
+                <DonutRating rating={car.ratings?.functions || 4.5} label="Functions" color="#2563eb" />
+                <DonutRating rating={car.ratings?.frame || 4.7} label="Frame/Structure" color="#7c3aed" />
               </div>
             </section>
 
@@ -353,6 +438,17 @@ export default function TrueValueDetails() {
                       value={phone}
                       onChange={e => setPhone(e.target.value)}
                       placeholder="+91 - xxxxx xxxxx"
+                      required
+                      className="w-full h-12 px-4 rounded-lg border border-gray-200 focus:ring-1 focus:ring-[#0e158d] focus:border-[#0e158d] outline-none text-sm font-semibold"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-wide mb-2">Location</label>
+                    <input
+                      type="text"
+                      value={location}
+                      onChange={e => setLocation(e.target.value)}
+                      placeholder="Your City / Area"
                       required
                       className="w-full h-12 px-4 rounded-lg border border-gray-200 focus:ring-1 focus:ring-[#0e158d] focus:border-[#0e158d] outline-none text-sm font-semibold"
                     />

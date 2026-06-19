@@ -1,4 +1,5 @@
 import { ShieldCheck, History, Award, CheckCircle2, Facebook, Instagram } from "lucide-react";
+import TrueValueTestimonials from "./TrueValueTestimonials";
 
 export default function TrueValueAbout() {
   return (
@@ -102,6 +103,9 @@ export default function TrueValueAbout() {
             </div>
           </div>
         </section>
+
+        {/* Customer Testimonials */}
+        <TrueValueTestimonials />
       </main>
     </div>
   );

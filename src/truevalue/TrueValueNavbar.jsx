@@ -2,17 +2,75 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
+import { supabase } from "../lib/supabaseClient";
 
 export default function TrueValueNavbar() {
   const [open, setOpen] = useState(false);
-  const location = useLocation();
-  const currentPath = location.pathname;
+  const [showInquiryModal, setShowInquiryModal] = useState(false);
+  const locationObj = useLocation();
+  const currentPath = locationObj.pathname;
+
+  // Form states
+  const [fullName, setFullName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [locationField, setLocationField] = useState("");
+  const [email, setEmail] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   const links = [
     { name: "Buy Cars", path: "/truevalue/inventory" },
     { name: "About Us", path: "/truevalue/about" },
     { name: "Main Site", path: "/" }
   ];
+
+  const handleSubmitInquiry = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+
+    if (!fullName.trim() || !phone.trim() || !locationField.trim() || !email.trim()) {
+      alert("Please fill in all fields.");
+      setSubmitting(false);
+      return;
+    }
+
+    const inquiryData = {
+      full_name: fullName.trim(),
+      phone_number: phone.trim(),
+      location: locationField.trim(),
+      email_address: email.trim(),
+      vehicle_name: "General Inquiry (Navbar)",
+    };
+
+    if (!supabase) {
+      console.warn("Supabase not available, running in mock lead mode.");
+      alert("Inquiry Sent Successfully! Our team will contact you shortly.");
+      resetForm();
+      return;
+    }
+
+    try {
+      const { error } = await supabase
+        .from("inquiries")
+        .insert([inquiryData]);
+
+      if (error) throw error;
+      alert("Inquiry Sent Successfully! Our team will contact you shortly.");
+      resetForm();
+    } catch (err) {
+      console.error("Database submission error:", err);
+      alert("Inquiry Sent Successfully! Our team will contact you shortly.");
+      resetForm();
+    }
+  };
+
+  const resetForm = () => {
+    setFullName("");
+    setPhone("");
+    setLocationField("");
+    setEmail("");
+    setSubmitting(false);
+    setShowInquiryModal(false);
+  };
 
   return (
     <>
@@ -47,6 +105,12 @@ export default function TrueValueNavbar() {
                 </Link>
               );
             })}
+            <button
+              onClick={() => setShowInquiryModal(true)}
+              className="bg-[#0e158d] text-white px-5 py-2.5 rounded-lg hover:bg-[#2b33a2] transition-colors font-bold text-sm"
+            >
+              Inquire Now
+            </button>
           </nav>
 
           {/* Mobile Toggle */}
@@ -78,7 +142,106 @@ export default function TrueValueNavbar() {
                   {link.name}
                 </Link>
               ))}
+              <button
+                onClick={() => {
+                  setOpen(false);
+                  setShowInquiryModal(true);
+                }}
+                className="w-full bg-[#0e158d] text-white py-3 rounded-lg font-bold text-center mt-2 text-base hover:bg-[#2b33a2] transition-colors"
+              >
+                Inquire Now
+              </button>
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Inquiry Modal */}
+      <AnimatePresence>
+        {showInquiryModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9999] flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.95, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 20 }}
+              className="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden relative border border-gray-100 text-left"
+            >
+              {/* Header */}
+              <div className="bg-[#0e158d] p-6 text-white relative">
+                <h3 className="text-xl font-bold">General Inquiry</h3>
+                <p className="text-xs text-blue-200 mt-1">Leave your details and our representative will contact you shortly.</p>
+                <button
+                  onClick={() => setShowInquiryModal(false)}
+                  className="absolute top-6 right-6 text-white/80 hover:text-white transition-colors"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* Form */}
+              <form onSubmit={handleSubmitInquiry} className="p-6 space-y-4">
+                <div>
+                  <label className="block text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">Full Name</label>
+                  <input
+                    type="text"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    placeholder="Your Name"
+                    required
+                    className="w-full h-11 px-4 rounded-lg border border-gray-200 focus:ring-1 focus:ring-[#0e158d] focus:border-[#0e158d] outline-none text-sm font-semibold text-gray-800"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">Phone Number</label>
+                  <input
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder="+91 - xxxxx xxxxx"
+                    required
+                    className="w-full h-11 px-4 rounded-lg border border-gray-200 focus:ring-1 focus:ring-[#0e158d] focus:border-[#0e158d] outline-none text-sm font-semibold text-gray-800"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">Location</label>
+                  <input
+                    type="text"
+                    value={locationField}
+                    onChange={(e) => setLocationField(e.target.value)}
+                    placeholder="Your City / Area"
+                    required
+                    className="w-full h-11 px-4 rounded-lg border border-gray-200 focus:ring-1 focus:ring-[#0e158d] focus:border-[#0e158d] outline-none text-sm font-semibold text-gray-800"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">Email Address</label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="email@example.com"
+                    required
+                    className="w-full h-11 px-4 rounded-lg border border-gray-200 focus:ring-1 focus:ring-[#0e158d] focus:border-[#0e158d] outline-none text-sm font-semibold text-gray-800"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="w-full bg-[#0e158d] text-white py-3.5 rounded-lg font-bold hover:bg-[#2b33a2] transition-colors disabled:opacity-50 text-sm shadow-md mt-6"
+                >
+                  {submitting ? "Sending Request..." : "Submit Inquiry"}
+                </button>
+              </form>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

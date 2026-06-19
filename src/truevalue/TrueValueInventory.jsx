@@ -23,7 +23,9 @@ export default function TrueValueInventory() {
   const [selectedFuels, setSelectedFuels] = useState({
     Petrol: false,
     CNG: false,
-    Diesel: false
+    Diesel: false,
+    Electric: false,
+    LPG: false
   });
   const [sortBy, setSortBy] = useState("Latest Arrivals");
   const [favorites, setFavorites] = useState({});
@@ -91,7 +93,9 @@ export default function TrueValueInventory() {
     setSelectedFuels({
       Petrol: false,
       CNG: false,
-      Diesel: false
+      Diesel: false,
+      Electric: false,
+      LPG: false
     });
     setSortBy("Latest Arrivals");
   };
@@ -236,7 +240,7 @@ export default function TrueValueInventory() {
               <div className="space-y-3">
                 <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider">Fuel Type</label>
                 <div className="space-y-2">
-                  {["Petrol", "CNG", "Diesel"].map(fuel => (
+                  {["Petrol", "CNG", "Diesel", "Electric", "LPG"].map(fuel => (
                     <label key={fuel} className="flex items-center gap-3 cursor-pointer group text-sm font-semibold text-gray-700">
                       <input
                         type="checkbox"

@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css'
 import AboutUs from './sections/AboutUs';
@@ -10,6 +11,7 @@ import Timeline from './sections/Timeline';
 import Work from './sections/Work';
 import FooterBar from './sections/FooterBar';
 import Leader from './sections/Leader';
+import CurtainLoader from './components/CurtainLoader';
 
 // True Value Portal Components
 import TrueValueNavbar from './truevalue/TrueValueNavbar';
@@ -20,8 +22,13 @@ import TrueValueDetails from './truevalue/TrueValueDetails';
 import TrueValueFooter from './truevalue/TrueValueFooter';
 
 function MainSite() {
+  const [showIntro, setShowIntro] = useState(true);
+
   return (
     <>
+      {showIntro && (
+        <CurtainLoader onComplete={() => setShowIntro(false)} />
+      )}
       <Navbar />
 
       <section id="home"><Hero /></section>
