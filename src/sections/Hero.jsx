@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { FlipWords } from "../components/FlipWords";
 
 export default function Hero() {
 
@@ -11,8 +10,6 @@ export default function Hero() {
   // move logo up on scroll
   const y = useTransform(scrollY, [0, 300], [0, -120]);
   const scale = useTransform(scrollY, [0, 300], [1, 0.85]);
-
-  const words = ["Excellence", "Trust", "Quality"];
 
   return (
     <section className="relative w-full h-screen flex items-center justify-center text-white overflow-hidden">
@@ -43,16 +40,8 @@ export default function Hero() {
         />
 
         {/* Tagline */}
-        <div className="text-2xl md:text-4xl font-semibold tracking-wide text-center">
-
-          <span className="inline-block align-middle">
-            <FlipWords words={words} className="text-yellow-400" />
-          </span>
-
-          <span className="ml-0.20rem text-white align-middle">
-            Across Every Journey.
-          </span>
-
+        <div className="text-xl sm:text-2xl md:text-2xl font-bold tracking-widest text-center text-[#FEFDF3] drop-shadow-md">
+          A LEGACY OF TRUST. ACROSS EVERY JOURNEY.
         </div>
 
       </div>
