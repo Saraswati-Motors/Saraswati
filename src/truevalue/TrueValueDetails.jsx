@@ -59,8 +59,7 @@ import {
   ArrowRight,
   ChevronRight,
   Fuel,
-  Maximize2,
-  Heart
+  Maximize2
 } from "lucide-react";
 
 export default function TrueValueDetails() {
@@ -70,7 +69,6 @@ export default function TrueValueDetails() {
   const [similarCars, setSimilarCars] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeImage, setActiveImage] = useState("");
-  const [isFavorite, setIsFavorite] = useState(false);
 
   // Form states
   const [fullName, setFullName] = useState("");
@@ -355,12 +353,12 @@ export default function TrueValueDetails() {
               </div>
 
               <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-4">
-                <DonutRating rating={car.ratings?.overall || 4.5} label="Overall Rating" color="#0e158d" />
-                <DonutRating rating={car.ratings?.exterior || 4.2} label="Exterior" color="#e11d48" />
-                <DonutRating rating={car.ratings?.interior || 4.4} label="Interior + Elec" color="#d97706" />
-                <DonutRating rating={car.ratings?.engine || 4.6} label="Engine" color="#059669" />
-                <DonutRating rating={car.ratings?.functions || 4.5} label="Functions" color="#2563eb" />
-                <DonutRating rating={car.ratings?.frame || 4.7} label="Frame/Structure" color="#7c3aed" />
+                <DonutRating rating={car.ratings?.overall || 4} label="Overall Rating" color="#0e158d" />
+                <DonutRating rating={car.ratings?.exterior || 4} label="Exterior" color="#0e158d" />
+                <DonutRating rating={car.ratings?.interior || 4} label="Interior + Elec" color="#0e158d" />
+                <DonutRating rating={car.ratings?.engine || 4} label="Engine" color="#0e158d" />
+                <DonutRating rating={car.ratings?.functions || 4} label="Functions" color="#0e158d" />
+                <DonutRating rating={car.ratings?.frame || 4} label="Frame/Structure" color="#0e158d" />
               </div>
             </section>
 

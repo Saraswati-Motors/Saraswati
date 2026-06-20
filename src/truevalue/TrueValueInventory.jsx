@@ -6,7 +6,6 @@ import {
   Calendar,
   MapPin,
   CheckCircle,
-  Heart,
   RotateCcw,
   SlidersHorizontal,
   Gauge
@@ -28,7 +27,6 @@ export default function TrueValueInventory() {
     LPG: false
   });
   const [sortBy, setSortBy] = useState("Latest Arrivals");
-  const [favorites, setFavorites] = useState({});
   const [visibleCount, setVisibleCount] = useState(8);
 
   // Reset visible items count when filters change
@@ -77,13 +75,6 @@ export default function TrueValueInventory() {
     }));
   };
 
-  // Toggle favorite status
-  const toggleFavorite = (id) => {
-    setFavorites(prev => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
-  };
 
   // Reset all filters
   const resetFilters = () => {
@@ -321,12 +312,7 @@ export default function TrueValueInventory() {
                           {car.badge}
                         </span>
                       )}
-                      <button
-                        onClick={() => toggleFavorite(car.id)}
-                        className="absolute top-4 right-4 bg-white/80 p-2 rounded-full hover:bg-white transition-colors text-[#0e158d]"
-                      >
-                        <Heart size={16} fill={favorites[car.id] ? "#0e158d" : "transparent"} />
-                      </button>
+
                     </div>
 
                     {/* Details */}
