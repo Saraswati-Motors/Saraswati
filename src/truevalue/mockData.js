@@ -9,7 +9,7 @@ export const mockCars = [
     fuel_type: "Petrol",
     transmission: "Manual",
     price_lakh: 9.85,
-    location: "IFFCO Chowk, Gurgaon",
+    location: "Jhunsi, Prayagraj",
     is_certified: true,
     is_featured: true,
     badge: "Featured",
@@ -23,7 +23,6 @@ export const mockCars = [
     gallery: [
       "https://lh3.googleusercontent.com/aida-public/AB6AXuDcfNw_A7LwuCppVupA_uBZoiyCc5arGWGpj-dMNGQeo3HlfV90V7cX9Nwa3clLCYghnDKXtiLIkew9NCdML8r4AYEOw5bLy0IIox1ijJpe1QPoKMf0GiISKWC77PMC1meXYcEo9sbZbv7gEQ7ipjdtn-u_O98UgT63479uNWl_tdJiEFlzJMHp0FtBQbhfpKaqc-m5C9IYTIyU-VT6JgNzMlOpqkkNiTS-u8VoUxjcq9VjPrGpsED55MslaMMJ1W0yUGDZbjM9SFe-",
       "https://lh3.googleusercontent.com/aida-public/AB6AXuDoLiI_IFt3LP6q_N9HfSI2UIkoQOfuAwL0WlQFiu4CcJzgMdQIzuoNZqsrDfY7bpQSoOuw14Czcp-XWlLbOTXGSgo6uh69q4klY5MyO2GabqtKyTpuu2r3nchmla7iTXt8YuEuMU4fA9bJnCrpoa2nqzzITg5pp9cYjCXEkGtGRzoarFzaYUAkdVOVEE3B2OwnpvmT3A5-8fspy3I09cMV__fgH79Zybi8mXD1q1aV-QcZw1EMRC3JJExx5ynqzynj6Oq1RGBYF-o9",
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAR_O0OZRsfc5ip8BupgFkbBnw385UDprRZqvJweHYYwLnqfMjRdxWLxO6sHegmnW-1EoeupQSCn24AjFO1zT7htlOgA-1UxdCEm-imWpEGcA50ChmEQXDVFEIL-ZNp6nsNi8UjHOhDINy-s5aJe74pryqDc63Coj4IzzOBvJ-OixXSVRSfG8RasFPaDOqJR5eDYTUVQAPAoBbO5nubxU9Rfj2lpULcq9Dy6BPqyHOrUVKcap7m6T0RBewy6O",
       "https://lh3.googleusercontent.com/aida-public/AB6AXuBOKHW627YRZ2z_sSm3nCy84YI8UHOJY08SG1eLBcez2f8OemKIDp6uG_-L6R8I5qvjPABu_gdTHP2AsShOxu8f_Odnww_VtScK1MMzhfzaFlw8eNfqZmYdVCSs89oUuHzekqPwmuf6N6JaEnKuICKfPvtoi7afckH3HbXrlctLAjsqkB-oMRN2tvg_nGtWlkpxk7gudgwgMRRiX6BAyLSUOFXJVh5eUrMoGWMkn4xvTk5AxV8-c34prGt9Nc6E-58KMxPZqX-m2FhS"
     ],
     details: {
@@ -90,7 +89,7 @@ export const mockCars = [
     fuel_type: "Petrol",
     transmission: "Automatic",
     price_lakh: 6.90,
-    location: "IFFCO Chowk, Gurgaon",
+    location: "Jhunsi, Prayagraj",
     is_certified: true,
     is_featured: false,
     badge: "Premium",
@@ -166,7 +165,7 @@ export const mockCars = [
     fuel_type: "Petrol",
     transmission: "Automatic",
     price_lakh: 18.10,
-    location: "IFFCO Chowk, Gurgaon",
+    location: "Jhunsi, Prayagraj",
     is_certified: true,
     is_featured: true,
     badge: "New Arrival",
