@@ -48,9 +48,13 @@ export default function Navbar() {
           {/* Logo */}
           <button
             onClick={() => handleScroll("home")}
-            className="font-semibold text-xl md:text-2xl tracking-wide hover:text-white transition-all duration-300"
+            className="flex items-center hover:opacity-90 transition-all duration-300"
           >
-            Saraswati
+            <img
+              src="/saraswati.webp"
+              alt="Saraswati"
+              className="h-8 md:h-10 w-auto object-contain"
+            />
           </button>
 
           {/* Desktop Links */}

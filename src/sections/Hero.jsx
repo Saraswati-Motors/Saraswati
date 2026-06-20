@@ -15,14 +15,19 @@ export default function Hero() {
   const words = ["Excellence", "Trust", "Quality"];
 
   return (
-    <section
-      className="relative w-full h-screen flex items-center justify-center text-white overflow-hidden"
-      style={{
-        backgroundImage: "url('/bg.webp')", // put image in public folder
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
+    <section className="relative w-full h-screen flex items-center justify-center text-white overflow-hidden">
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        poster="/bg.webp"
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="/cover.mp4" type="video/mp4" />
+      </video>
+
       {/* dark overlay */}
       <div className="absolute inset-0 bg-black/30" />
 
