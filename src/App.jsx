@@ -11,7 +11,7 @@ import Timeline from './sections/Timeline';
 import Work from './sections/Work';
 import FooterBar from './sections/FooterBar';
 import Leader from './sections/Leader';
-import CurtainLoader from './components/CurtainLoader';
+import ScrollToTop from './components/ScrollToTop';
 
 // True Value Portal Components
 import TrueValueNavbar from './truevalue/TrueValueNavbar';
@@ -22,13 +22,8 @@ import TrueValueDetails from './truevalue/TrueValueDetails';
 import TrueValueFooter from './truevalue/TrueValueFooter';
 
 function MainSite() {
-  const [showIntro, setShowIntro] = useState(true);
-
   return (
     <>
-      {showIntro && (
-        <CurtainLoader onComplete={() => setShowIntro(false)} />
-      )}
       <Navbar />
 
       <section id="home"><Hero /></section>
@@ -59,6 +54,7 @@ function TrueValueLayout({ children }) {
 export default function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         {/* Main Site Route */}
         <Route path="/" element={<MainSite />} />

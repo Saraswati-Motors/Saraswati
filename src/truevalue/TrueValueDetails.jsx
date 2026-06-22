@@ -275,13 +275,7 @@ export default function TrueValueDetails() {
             </section>
 
             {/* Bento Highlights */}
-            <section className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div className="bg-white p-6 rounded-2xl border border-gray-100 flex flex-col items-center text-center shadow-sm">
-                <Gauge className="text-[#0e158d] mb-2" size={32} />
-                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Mileage</span>
-                <span className="font-bold text-lg text-[#131b2e] mt-1">{car.details?.mileage || "19.0 kmpl"}</span>
-              </div>
-
+            <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-white p-6 rounded-2xl border border-gray-100 flex flex-col items-center text-center shadow-sm">
                 <Fuel className="text-[#0e158d] mb-2" size={32} />
                 <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Fuel Type</span>
@@ -310,10 +304,6 @@ export default function TrueValueDetails() {
                 <div className="flex justify-between items-center py-4 border-b border-gray-100">
                   <span className="text-xs font-bold text-gray-400 uppercase">Engine</span>
                   <span className="font-semibold text-gray-700">{car.engine}</span>
-                </div>
-                <div className="flex justify-between items-center py-4 border-b border-gray-100">
-                  <span className="text-xs font-bold text-gray-400 uppercase">Max Power</span>
-                  <span className="font-semibold text-gray-700">{car.max_power}</span>
                 </div>
                 <div className="flex justify-between items-center py-4 border-b border-gray-100">
                   <span className="text-xs font-bold text-gray-400 uppercase">Seating Capacity</span>

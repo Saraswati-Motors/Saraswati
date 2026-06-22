@@ -10,7 +10,7 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
-  Gauge,
+  Fuel,
   Settings,
   MapPin,
   Phone,
@@ -202,8 +202,8 @@ export default function TrueValueHome() {
                       </div>
                       <div className="grid grid-cols-2 gap-4 border-y border-gray-100 py-4">
                         <div className="flex items-center gap-2 text-gray-600 text-sm">
-                          <Gauge size={16} />
-                          <span>{car.details?.mileage || "N/A"}</span>
+                          <Fuel size={16} />
+                          <span>{car.fuel_type}</span>
                         </div>
                         <div className="flex items-center gap-2 text-gray-600 text-sm">
                           <Settings size={16} />

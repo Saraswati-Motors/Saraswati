@@ -3,13 +3,12 @@ import React from "react";
 export default function Leader() {
   return (
     <section className="leader">
-      
+
       {/* IMAGE */}
       <div className="leader__imageWrapper">
         <img
           src="/nana.webp"
-          alt="Mr. G.P Srivastava - Founder and Chairman, Saraswati Group"
-          className="leader__image"
+          alt="The late Mr. G.P. Srivastava, Founder and Chairman of Saraswati Group" className="leader__image"
         />
       </div>
 
@@ -27,7 +26,7 @@ export default function Leader() {
         <span className="leader__quote leader__quote--end">”</span>
 
         <p className="leader__sub">
-          Mr. G.P Srivastava | 1st September 1954 – Forever | Founder and Chairman
+          The late Mr. G.P. Srivastava | 1st September 1954 – Forever | Founder and Chairman
         </p>
       </div>
 

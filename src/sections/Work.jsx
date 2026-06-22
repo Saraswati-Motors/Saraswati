@@ -7,7 +7,7 @@ const data = [
   {
     category: "Automobile",
     title: "Hero MotoCorp",
-    src: "/work/hero.webp",
+    src: "/work/hero1.webp",
     link: "https://www.hero.com/",
     content: <p>Hero MotoCorp stands as a global leader in the two-wheeler industry, recognized for its quality engineering, innovation, and customer trust. Its vehicles are designed to deliver performance, efficiency, and durability for everyday riders.
       Our branches in Rajapur and Old Prayagraj extend this legacy by providing complete sales and service solutions. Whether it’s purchasing a new vehicle or maintaining it over time, our team ensures a seamless, reliable, and customer-focused experience at every step.</p>,
@@ -15,7 +15,7 @@ const data = [
   {
     category: "Automobile",
     title: "Vida ",
-    src: "/work/vida.webp",
+    src: "/work/vida1.webp",
     link: "https://www.vidamotors.com/",
     content: <p>VIDA, the electric vehicle brand by Hero MotoCorp, focuses on delivering smart, eco-friendly, and efficient mobility solutions. With a vision for a greener future, it offers a new way of riding that blends performance with sustainability.
 
@@ -51,7 +51,7 @@ const data = [
   {
     category: "Training",
     title: "Driving School",
-    src: "/work/msds.webp",
+    src: "/work/msds2.webp",
     link: "https://www.msdsindia.com/",
     content: <p>Maruti Suzuki Driving School is designed to promote safe and confident driving through structured training programs and modern learning techniques. It focuses on building responsible drivers with practical skills and road awareness.
 
@@ -60,7 +60,7 @@ const data = [
   {
     category: "Pre-Owned",
     title: "TrueValue",
-    src: "/work/true.webp",
+    src: "/work/tv.webp",
     link: "https://www.truevalue.com/",
     content: <p>Maruti Suzuki True Value is the certified pre-owned car platform by Maruti Suzuki, known for offering quality-checked and reliable used vehicles. It ensures transparency, trust, and a hassle-free buying experience for customers looking for pre-owned cars.
 
@@ -78,7 +78,7 @@ const data = [
   {
     category: "Service Centers",
     title: "Service Centers for All Brands",
-    src: "/work/service.webp",
+    src: "/work/service1.webp",
     link: "#",
     content: <p>Maruti Suzuki is known for its strong and reliable service network, ensuring quality maintenance and consistent customer support.
 
