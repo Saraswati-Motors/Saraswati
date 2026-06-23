@@ -92,7 +92,6 @@ export default function TrueValueHome() {
         const { data, error } = await supabase
           .from("vehicles")
           .select("*")
-          .eq("is_featured", true)
           .order("created_at", { ascending: false })
           .limit(8);
 
