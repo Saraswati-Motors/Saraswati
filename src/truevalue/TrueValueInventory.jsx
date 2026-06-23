@@ -337,7 +337,7 @@ export default function TrueValueInventory() {
                         </div>
                         <div className="flex items-center gap-2">
                           <MapPin size={16} className="text-gray-400" />
-                          <span className="truncate">{car.location.split(",")[0]}</span>
+                          <span className="truncate">{(car.location || "").split(",")[0] || "N/A"}</span>
                         </div>
                         <div className="flex items-center gap-2">
                           <CheckCircle size={16} className="text-[#0e158d]" />
