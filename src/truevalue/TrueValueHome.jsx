@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { supabase } from "../lib/supabaseClient";
-import { mockCars } from "./mockData";
 import { Link } from "react-router-dom";
 import TrueValueTestimonials from "./TrueValueTestimonials";
 import {
@@ -25,7 +24,7 @@ export default function TrueValueHome() {
   useEffect(() => {
     async function loadFeaturedCars() {
       if (!supabase) {
-        setFeaturedCars(mockCars.filter(car => car.is_featured));
+        setFeaturedCars([]);
         setLoading(false);
         return;
       }
@@ -36,13 +35,13 @@ export default function TrueValueHome() {
           .eq("is_featured", true);
 
         if (error || !data || data.length === 0) {
-          setFeaturedCars(mockCars.filter(car => car.is_featured));
+          setFeaturedCars([]);
         } else {
           setFeaturedCars(data);
         }
       } catch (err) {
-        console.error("Error fetching from Supabase, using mock fallback:", err);
-        setFeaturedCars(mockCars.filter(car => car.is_featured));
+        console.error("Error fetching from Supabase:", err);
+        setFeaturedCars([]);
       } finally {
         setLoading(false);
       }
@@ -197,7 +196,7 @@ export default function TrueValueHome() {
                           <p className="text-gray-500 text-sm">{car.year} • {car.fuel_type} • {car.mileage_km.toLocaleString()} km</p>
                         </div>
                         <div className="text-right">
-                          <p className="text-[#0e158d] font-bold text-xl">₹{car.price_lakh} Lakh</p>
+                          <p className="text-[#0e158d] font-bold text-xl">₹{Number(car.price_lakh || car.price || 0).toFixed(2)} Lakh</p>
                         </div>
                       </div>
                       <div className="grid grid-cols-2 gap-4 border-y border-gray-100 py-4">

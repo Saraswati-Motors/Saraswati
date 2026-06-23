@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabaseClient";
-import { mockCars } from "./mockData";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -81,10 +80,8 @@ export default function TrueValueDetails() {
     async function loadVehicleDetails() {
       setLoading(true);
       if (!supabase) {
-        const fallbackCar = mockCars.find(c => c.id === vehicleId) || mockCars[0];
-        setCar(fallbackCar);
-        setActiveImage(fallbackCar.image_url);
-        setSimilarCars(mockCars.filter(c => c.id !== fallbackCar.id).slice(0, 3));
+        setCar(null);
+        setSimilarCars([]);
         setLoading(false);
         return;
       }
@@ -96,17 +93,14 @@ export default function TrueValueDetails() {
           .eq("id", vehicleId)
           .maybeSingle();
 
-        let currentCar = null;
-
         if (carError || !carData) {
-          // Try to find in mock data
-          currentCar = mockCars.find(c => c.id === vehicleId) || mockCars[0];
-        } else {
-          currentCar = carData;
+          setCar(null);
+          setLoading(false);
+          return;
         }
 
-        setCar(currentCar);
-        setActiveImage(currentCar.image_url);
+        setCar(carData);
+        setActiveImage(carData.image_url);
 
         // Fetch similar suggestions (exclude current)
         const { data: allCarsData, error: listError } = await supabase
@@ -115,25 +109,21 @@ export default function TrueValueDetails() {
           .limit(10);
 
         let allCars = [];
-        if (listError || !allCarsData || allCarsData.length === 0) {
-          allCars = mockCars;
-        } else {
+        if (!listError && allCarsData) {
           allCars = allCarsData;
         }
 
         // Filter out current car and pick up to 3 similar ones (by fuel type or category)
         const suggestions = allCars
-          .filter(c => c.id !== currentCar.id)
+          .filter(c => c.id !== carData.id)
           .slice(0, 3);
 
         setSimilarCars(suggestions);
 
       } catch (err) {
-        console.error("Error loading vehicle details, falling back to mock:", err);
-        const fallbackCar = mockCars.find(c => c.id === vehicleId) || mockCars[0];
-        setCar(fallbackCar);
-        setActiveImage(fallbackCar.image_url);
-        setSimilarCars(mockCars.filter(c => c.id !== fallbackCar.id).slice(0, 3));
+        console.error("Error loading vehicle details:", err);
+        setCar(null);
+        setSimilarCars([]);
       } finally {
         setLoading(false);
       }
@@ -390,7 +380,7 @@ export default function TrueValueDetails() {
 
               <div>
                 <span className="text-xs font-bold text-gray-400 uppercase block mb-1">True Value Price</span>
-                <span className="text-4xl font-black text-[#0e158d]">₹{car.price_lakh} Lakh</span>
+                <span className="text-4xl font-black text-[#0e158d]">₹{Number(car.price_lakh || car.price || 0).toFixed(2)} Lakh</span>
               </div>
 
               <div className="space-y-3 text-sm font-semibold text-gray-700">
@@ -497,7 +487,7 @@ export default function TrueValueDetails() {
                     <h3 className="text-lg font-bold text-[#131b2e] mb-1">{similar.make} {similar.model}</h3>
                     <p className="text-xs text-gray-500 font-semibold mb-4">{similar.year} | {similar.variant} | {similar.mileage_km.toLocaleString()} km</p>
                     <div className="flex justify-between items-center mt-auto">
-                      <span className="text-lg font-bold text-[#0e158d]">₹{similar.price_lakh} Lakh</span>
+                      <span className="text-lg font-bold text-[#0e158d]">₹{Number(similar.price_lakh || similar.price || 0).toFixed(2)} Lakh</span>
                       <Link
                         to={`/truevalue/vehicle/${similar.id}`}
                         className="border border-gray-200 text-[#131b2e] hover:bg-[#0e158d] hover:text-white px-4 py-2 rounded-lg text-xs font-bold transition-all"

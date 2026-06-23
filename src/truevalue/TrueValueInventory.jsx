@@ -1,6 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
 import { supabase } from "../lib/supabaseClient";
-import { mockCars } from "./mockData";
 import { Link } from "react-router-dom";
 import {
   Calendar,
@@ -37,7 +36,7 @@ export default function TrueValueInventory() {
   useEffect(() => {
     async function loadCars() {
       if (!supabase) {
-        setCars(mockCars);
+        setCars([]);
         setLoading(false);
         return;
       }
@@ -47,13 +46,13 @@ export default function TrueValueInventory() {
           .select("*");
 
         if (error || !data || data.length === 0) {
-          setCars(mockCars);
+          setCars([]);
         } else {
           setCars(data);
         }
       } catch (err) {
-        console.error("Error loading cars, falling back to mock:", err);
-        setCars(mockCars);
+        console.error("Error loading cars:", err);
+        setCars([]);
       } finally {
         setLoading(false);
       }
@@ -101,7 +100,7 @@ export default function TrueValueInventory() {
     }
 
     // Budget filter (price_lakh <= maxBudget)
-    result = result.filter(c => c.price_lakh <= maxBudget);
+    result = result.filter(c => (c.price_lakh || c.price || 0) <= maxBudget);
 
     // Year filter
     if (minYear) {
@@ -116,9 +115,9 @@ export default function TrueValueInventory() {
 
     // Sorting
     if (sortBy === "Price: Low to High") {
-      result.sort((a, b) => a.price_lakh - b.price_lakh);
+      result.sort((a, b) => (a.price_lakh || a.price || 0) - (b.price_lakh || b.price || 0));
     } else if (sortBy === "Price: High to Low") {
-      result.sort((a, b) => b.price_lakh - a.price_lakh);
+      result.sort((a, b) => (b.price_lakh || b.price || 0) - (a.price_lakh || a.price || 0));
     } else if (sortBy === "Mileage: Lowest") {
       result.sort((a, b) => a.mileage_km - b.mileage_km);
     } // "Latest Arrivals" remains default database sort or mock list order
@@ -323,7 +322,7 @@ export default function TrueValueInventory() {
                           <p className="text-gray-500 text-xs font-semibold mt-1">{car.variant} | {car.transmission} | {car.fuel_type}</p>
                         </div>
                         <div className="text-right">
-                          <p className="text-xl font-bold text-[#0e158d]">₹{car.price_lakh} Lakh</p>
+                          <p className="text-xl font-bold text-[#0e158d]">₹{Number(car.price_lakh || car.price || 0).toFixed(2)} Lakh</p>
                         </div>
                       </div>
 
