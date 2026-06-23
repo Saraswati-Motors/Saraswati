@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { supabase } from "../lib/supabaseClient";
 import { Link } from "react-router-dom";
+import { getVehicleImage } from "../utils/imageUtils";
 import {
   Calendar,
   MapPin,
@@ -304,7 +305,7 @@ export default function TrueValueInventory() {
                       <img
                         className="w-full h-full object-cover"
                         alt={`${car.make} ${car.model}`}
-                        src={car.image_url}
+                        src={getVehicleImage(car)}
                       />
                       {car.badge && (
                         <span className="absolute top-4 left-4 bg-[#0e158d] text-white px-3 py-1 text-xs font-bold rounded shadow-md">

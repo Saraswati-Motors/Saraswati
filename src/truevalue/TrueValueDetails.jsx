@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabaseClient";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { getVehicleImage, getVehicleGallery } from "../utils/imageUtils";
 
 function DonutRating({ rating, maxRating = 5, label, color = "#0e158d" }) {
   const percentage = (rating / maxRating) * 100;
@@ -100,7 +101,8 @@ export default function TrueValueDetails() {
         }
 
         setCar(carData);
-        setActiveImage(carData.image_url);
+        setActiveImage(getVehicleImage(carData));
+        console.log("Image Source:", getVehicleImage(carData));
 
         // Fetch similar suggestions (exclude current)
         const { data: allCarsData, error: listError } = await supabase
@@ -218,7 +220,7 @@ export default function TrueValueDetails() {
     );
   }
 
-  const imagesList = [car.image_url, ...(car.gallery || [])].filter(Boolean);
+  const imagesList = getVehicleGallery(car);
 
   return (
     <div className="bg-[#faf8ff] text-[#131b2e] min-h-screen">
@@ -476,7 +478,7 @@ export default function TrueValueDetails() {
                   <div className="aspect-video relative overflow-hidden bg-gray-100 flex-shrink-0">
                     <img
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      src={similar.image_url}
+                      src={getVehicleImage(similar)}
                       alt={`${similar.make} ${similar.model}`}
                     />
                     <div className="absolute top-4 left-4 bg-[#0e158d] text-white px-3 py-1 text-[10px] font-bold uppercase rounded">

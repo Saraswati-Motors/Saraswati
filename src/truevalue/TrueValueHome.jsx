@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { supabase } from "../lib/supabaseClient";
 import { Link } from "react-router-dom";
+import { getVehicleImage } from "../utils/imageUtils";
 import TrueValueTestimonials from "./TrueValueTestimonials";
 import {
   ShieldCheck,
@@ -183,7 +184,7 @@ export default function TrueValueHome() {
                       <img
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         alt={`${car.make} ${car.model}`}
-                        src={car.image_url}
+                        src={getVehicleImage(car)}
                       />
                       <span className="absolute top-4 left-4 bg-[#0e158d] text-white px-3 py-1 text-xs font-bold rounded">
                         {car.badge || "CERTIFIED"}

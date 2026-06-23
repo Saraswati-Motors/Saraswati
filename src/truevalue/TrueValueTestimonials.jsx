@@ -157,7 +157,7 @@ export default function TrueValueTestimonials() {
       return;
     }
 
-    let uploadedImageUrl = imagePreview || null; // Fallback to base64 preview locally
+    let uploadedImageUrl = null;
 
     if (supabase && imageFile) {
       try {
@@ -165,23 +165,23 @@ export default function TrueValueTestimonials() {
         const fileName = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}.${fileExt}`;
         const filePath = `uploads/${fileName}`;
 
-        // Attempt to upload image to 'testimonials' bucket
+        // Attempt to upload image to 'vehicle-images' bucket
         const { error: uploadError } = await supabase.storage
-          .from("testimonials")
+          .from("vehicle-images")
           .upload(filePath, imageFile);
 
         if (!uploadError) {
           const { data } = supabase.storage
-            .from("testimonials")
+            .from("vehicle-images")
             .getPublicUrl(filePath);
           if (data?.publicUrl) {
             uploadedImageUrl = data.publicUrl;
           }
         } else {
-          console.warn("Storage upload failed, using local preview representation:", uploadError);
+          console.warn("Storage upload failed:", uploadError);
         }
       } catch (err) {
-        console.warn("Image upload process error, falling back to local representation:", err);
+        console.warn("Image upload process error:", err);
       }
     }
 
