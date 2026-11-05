@@ -24,3 +24,6 @@ dist-ssr
 *.sln
 *.sw?
 
+public/*.mp4
+public/*.mov
+public/*.MOV
